@@ -24,7 +24,12 @@ import FormalConjectures.Util.ProblemImports
 
 open NumberField CyclotomicField IsCyclotomicExtension
 
-instance (n : ℕ+) : NumberField (maximalRealSubfield (CyclotomicField n ℚ)) := by infer_instance
 
-theorem kummer_vandiver (p : ℕ+) (hp : p.Prime) : ¬ Dvd.dvd ↑p (classNumber (maximalRealSubfield (CyclotomicField p ℚ)))
-    := by sorry
+/--
+Kummer–Vandiver conjecture states that for every prime $p$, the class number of the maximal
+real subfield of $\mathbb{Q}(\zeta_p)$ is not divisible by $p$.
+--/
+@[category research open, AMS 11]
+theorem kummer_vandiver (p : ℕ+) (hp : p.Prime) : ¬ Dvd.dvd
+    ↑p (classNumber (maximalRealSubfield (CyclotomicField p ℚ))) := by
+  sorry
