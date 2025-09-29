@@ -41,14 +41,14 @@ Sum of $\tau(f(n))$ for a function $f : \mathbb{N} \to \mathbb{N}$.
 Here $\tau$ is the divisor counting function, which is `σ 0` in mathlib.
 -/
 noncomputable def Erdos975Sum (f : ℕ → ℕ) (x : ℝ) : ℝ :=
-  ∑ n ∈ Finset.range (⌊x⌋₊ + 1), σ 0 (f n)
+  ∑ n ≤ ⌊x⌋₊, σ 0 (f n)
 
 /- Auxiliary definition for nonnegative irreducible polynomials over $\mathbb{Z}$ on $\mathbb{N}$. -/
 def Erdos975NonnegIrredPoly (f : ℕ → ℕ) (g : ℤ[X]) : Prop :=
   Irreducible g ∧ ∃ N : ℕ, ∀ n ≥ N, f n = g.eval ↑n ∧ 0 ≤ f n
 
 def Erdos975Asymptotic (f : ℕ → ℕ) (c : ℝ) : Prop :=
-  Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) (atTop) (nhds c)
+  Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c)
 
 /--
 For an irreducible polynomial $f \in \mathbb{Z}[x]$ with $f(n) \ge 0$ for all $n \ge 0$,
