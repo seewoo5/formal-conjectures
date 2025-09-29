@@ -51,7 +51,7 @@ def Erdos975Asymptotic (f : ℕ → ℕ) (c : ℝ) : Prop :=
   Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c)
 
 /--
-For an irreducible polynomial $f \in \mathbb{Z}[x]$ with $f(n) \ge 0$ for all $n \ge 0$,
+For an irreducible polynomial $f \in \mathbb{Z}[x]$ with $f(n) \ge 1$ for sufficiently large $n$,
 does there exists a constant $c = c(f) > 0$ such that
 $\sum_{n \le x} \tau(f(n)) \approx c \cdot x \log x$?
 -/
