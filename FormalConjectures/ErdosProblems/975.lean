@@ -57,7 +57,7 @@ $\sum_{n \le x} \tau(f(n)) \approx c \cdot x \log x$?
 -/
 @[category research open, AMS 11]
 theorem erdos_975 (f : ℕ → ℕ) (g : ℤ[X]) (hf : Erdos975NonnegIrredPoly f g) :
-    ∃ (c : ℝ), 0 < c ∧ Erdos975Asymptotic f c := by
+    (∃ (c : ℝ), 0 < c ∧ Erdos975Asymptotic f c) ↔ answer(sorry) := by
   sorry
 
 /--
