@@ -15,24 +15,24 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
-open Polynomial
 
 /-!
-# Hypothesis H
+# Mathoverflow 31908
 
-*Reference:* [Wikipedia](https://en.wikipedia.org/wiki/Schinzel%27s_hypothesis_H)
+Source:
+[Mathoverflow/31908](https://mathoverflow.net/questions/31809/pre-triangulated-category-that-isnt-triangulated)
+
 -/
 
-namespace Schinzel
+namespace Mathoverflow31809
 
-/--
-**Schinzel conjecture (H hypothesis)**
-If a finite set of polynomials $f_i$ satisfies both Schinzel and Bunyakovsky conditions,
-there exist infinitely many natural numbers $n$ such that $f_i(n)$ are primes for all $i$.
--/
-@[category research open, AMS 11]
-theorem schinzel_conjecture (fs : Finset ℤ[X]) (hfs : ∀ f ∈ fs, BunyakovskyCondition f)
-    (hfs' : SchinzelCondition fs) : Infinite {n : ℕ | ∀ f ∈ fs, (f.eval (n : ℤ)).natAbs.Prime} := by
+open CategoryTheory Limits Category Preadditive Pretriangulated
+
+/-- Does there exist a category that is pretriangulated but not triangulated? -/
+@[category research open, AMS 18]
+theorem mathoverflow_31809 : (∀ (C : Type*) [Category C] [Preadditive C]
+    [HasZeroObject C] [HasShift C ℤ] [∀ (n : ℤ), (shiftFunctor C n).Additive]
+    [Pretriangulated C], IsTriangulated C) ↔ answer(sorry) := by
   sorry
 
-end Schinzel
+end Mathoverflow31809
