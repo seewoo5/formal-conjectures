@@ -37,7 +37,7 @@ open scoped ArithmeticFunction
 namespace Erdos975
 
 /-
-Sum of $\tau(f(n))$ for a function $f : \mathbb{N} \to \mathbb{N}$.
+Sum of $\tau(f(n))$ from `0` to `⌊x⌋` to for a function $f : \mathbb{N} \to \mathbb{N}$.
 Here $\tau$ is the divisor counting function, which is `σ 0` in mathlib.
 -/
 noncomputable def Erdos975Sum (f : ℕ → ℕ) (x : ℝ) : ℝ :=
