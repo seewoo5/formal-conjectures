@@ -14,26 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -/
 
-import FormalConjectures.Util.ProblemImports
+import Mathlib.Data.Finset.Empty
 
-/-!
-# Erdős Problem 398
-
-*References:*
- - [erdosproblems.com/398](https://www.erdosproblems.com/398)
- - [Wikipedia: Brocard's problem](https://en.wikipedia.org/wiki/Brocard%27s_problem)
--/
-
-open Nat
-
-namespace Erdos398
-
-/--
-**Brocard's Problem**
-Does $n! + 1 = m^2$ have integer solutions other than $n = 4, 5, 7$?
--/
-@[category research open, AMS 11]
-theorem erdos_398 : {n | ∃ m, n ! + 1 = m ^ 2} = {4, 5, 7} ↔ answer(sorry) := by
-  sorry
-
-end Erdos398
+@[simp]
+theorem Finset.univ_finset_of_isEmpty {α : Type*} [h : IsEmpty α] :
+    (Set.univ : Set (Finset α)) = {∅} := by
+  ext S
+  rw [Set.mem_singleton_iff, eq_true (Set.mem_univ S), true_iff]
+  ext a
+  exact IsEmpty.elim h a
