@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -/
 
+import FormalConjectures.ForMathlib.Algebra.GCDMonoid.Finset
 import FormalConjectures.ForMathlib.Algebra.Group.Indicator
 import FormalConjectures.ForMathlib.Algebra.Order.Group.Pointwise.Interval
 import FormalConjectures.ForMathlib.Algebra.Polynomial.Basic
@@ -60,6 +61,7 @@ import FormalConjectures.ForMathlib.NumberTheory.CoveringSystem
 import FormalConjectures.ForMathlib.NumberTheory.Lacunary
 import FormalConjectures.ForMathlib.NumberTheory.PrimeGap
 import FormalConjectures.ForMathlib.NumberTheory.WallSunSunPrimes
+import FormalConjectures.ForMathlib.Order.Filter.atTopBot.Finset
 import FormalConjectures.ForMathlib.Order.Filter.Cofinite
 import FormalConjectures.ForMathlib.Order.Interval.Finset.Basic
 import FormalConjectures.ForMathlib.Order.Interval.Finset.Nat
