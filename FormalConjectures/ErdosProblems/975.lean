@@ -67,7 +67,7 @@ theorem erdos_975.variant.upper_bound (f : ℤ[X]) (hf : Irreducible f)
 @[category research solved, AMS 11]
 theorem erdos_975.variant.lower_bound (f : ℤ[X]) (hf : Irreducible f)
     (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) :
-    (fun x ↦ x * x.log) =O[atTop] (Erdos975Sum f) := by
+    (fun x ↦ x * log x) =O[atTop] (Erdos975Sum f) := by
   sorry
 
 /--
@@ -80,7 +80,7 @@ TODO: formalize Hurwitz class numbers and the expression of the constant in term
 @[category research solved, AMS 11]
 theorem erdos_975.variant.quadratic (f : ℤ[X]) (hf : Irreducible f)
     (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) (hf_degree : f.degree = 2) (c : ℝ) :
-    c = answer(sorry) → 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c) := by
+    c = answer(sorry) → 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * log x)) atTop (nhds c) := by
   sorry
 
 /--
@@ -89,12 +89,12 @@ $\sum_{n \le x} \tau(n^2 + 1) \sim \frac{3}{\pi} x \log x + O(x)$. See Tao's blo
 -/
 @[category research solved, AMS 11]
 theorem erdos_975.variant.n2_plus_1_strong :
-    (fun x ↦ (Erdos975Sum (X ^ 2 + 1) x - (3 / π) * x * x.log)) =O[atTop] id := by
+    (fun x ↦ (Erdos975Sum (X ^ 2 + 1) x - (3 / π) * x * log x)) =O[atTop] id := by
   sorry
 
 @[category research solved, AMS 11]
 theorem erdos_975.variant.n2_plus_1 :
-    ∃ c > (0 : ℝ), Tendsto (fun x ↦ Erdos975Sum (X ^ 2 + 1) x / (x * x.log)) atTop (nhds c) := by
+    ∃ c > (0 : ℝ), Tendsto (fun x ↦ Erdos975Sum (X ^ 2 + 1) x / (x * log x)) atTop (nhds c) := by
   sorry
 
 end Erdos975
