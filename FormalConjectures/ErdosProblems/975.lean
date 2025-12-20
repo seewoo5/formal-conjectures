@@ -37,18 +37,13 @@ open scoped ArithmeticFunction
 namespace Erdos975
 
 /-
-Sum of $\tau(f(n))$ from `0` to `⌊x⌋` to for a function $f : \mathbb{N} \to \mathbb{N}$.
+Sum of $\tau(f(n))$ from `0` to `⌊x⌋` for a polynomial $f \in \mathbb{Z}[X]$.
 Here $\tau$ is the divisor counting function, which is `σ 0` in mathlib.
+Also, for simplicity, we use `toNat` to convert integer values to natural numbers, instead of
+dealing with negative values.
 -/
-noncomputable def Erdos975Sum (f : ℕ → ℕ) (x : ℝ) : ℝ :=
-  ∑ n ≤ ⌊x⌋₊, σ 0 (f n)
-
-/- Auxiliary definition for nonnegative irreducible polynomials over $\mathbb{Z}$ on $\mathbb{N}$. -/
-def Erdos975NonnegIrredPoly (f : ℕ → ℕ) (g : ℤ[X]) : Prop :=
-  Irreducible g ∧ ∃ N : ℕ, ∀ n ≥ N, f n = g.eval ↑n ∧ 0 ≤ f n
-
-def Erdos975Asymptotic (f : ℕ → ℕ) (c : ℝ) : Prop :=
-  Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c)
+noncomputable def Erdos975Sum (f : ℤ[X]) (x : ℝ) : ℝ :=
+  ∑ n ≤ ⌊x⌋₊, σ 0 (f.eval ↑n).toNat
 
 /--
 For an irreducible polynomial $f \in \mathbb{Z}[x]$ with $f(n) \ge 1$ for sufficiently large $n$,
@@ -56,20 +51,21 @@ does there exists a constant $c = c(f) > 0$ such that
 $\sum_{n \le x} \tau(f(n)) \approx c \cdot x \log x$?
 -/
 @[category research open, AMS 11]
-theorem erdos_975 (f : ℕ → ℕ) (g : ℤ[X]) (hf : Erdos975NonnegIrredPoly f g) :
-    (∃ (c : ℝ), 0 < c ∧ Erdos975Asymptotic f c) ↔ answer(sorry) := by
+theorem erdos_975 (f : ℤ[X]) (hf : Irreducible f) (hf_nonneg : ∃ N : ℕ, ∀ n ≥ N, 1 ≤ (f.eval ↑n)) :
+    (∃ (c : ℝ), 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c)) ↔
+    answer(sorry) := by
   sorry
 
 /--
 The correctness of growth rate is shown in [Va39] (lower bound) and [Er52b] (upper bound).
 -/
 @[category research solved, AMS 11]
-theorem erdos_975.variant.upper_bound (f : ℕ → ℕ) (g : ℤ[X]) (hf : Erdos975NonnegIrredPoly f g) :
+theorem erdos_975.variant.upper_bound (f : ℤ[X]) (hf : Irreducible f) :
     Erdos975Sum f =O[atTop] (fun x ↦ x * x.log) := by
   sorry
 
 @[category research solved, AMS 11]
-theorem erdos_975.variant.lower_bound (f : ℕ → ℕ) (g : ℤ[X]) (hf : Erdos975NonnegIrredPoly f g) :
+theorem erdos_975.variant.lower_bound (f : ℤ[X]) (hf : Irreducible f) :
     (fun x ↦ x * x.log) =O[atTop] (Erdos975Sum f) := by
   sorry
 
@@ -81,9 +77,9 @@ is given by McKey in [Mc95], [Mc97], [Mc99].
 TODO: formalize Hurwitz class numbers and the expression of the constant in terms of them.
 -/
 @[category research solved, AMS 11]
-theorem erdos_975.variant.quadratic (f : ℕ → ℕ) (g : ℤ[X]) (hf : Erdos975NonnegIrredPoly f g)
-    (hg_degree : g.degree = 2) :
-    ∃ (c : ℝ), 0 < c ∧ Erdos975Asymptotic f c := by
+theorem erdos_975.variant.quadratic (f : ℤ[X]) (hf : Irreducible f)
+    (hf_nonneg : ∃ N : ℕ, ∀ n ≥ N, 1 ≤ (f.eval ↑n)) (hf_degree : f.degree = 2) :
+    ∃ (c : ℝ), 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c) := by
   sorry
 
 /--
@@ -92,12 +88,12 @@ $\sum_{n \le x} \tau(n^2 + 1) \sim \frac{3}{\pi} x \log x + O(x)$. See Tao's blo
 -/
 @[category research solved, AMS 11]
 theorem erdos_975.variant.n2_plus_1_strong :
-    (fun x ↦ (Erdos975Sum (fun n ↦ n ^ 2 + 1) x - (3 / π) * x * x.log)) =O[atTop] id := by
+    (fun x ↦ (Erdos975Sum (X ^ 2 + 1) x - (3 / π) * x * x.log)) =O[atTop] id := by
   sorry
 
 @[category research solved, AMS 11]
 theorem erdos_975.variant.n2_plus_1 :
-    Erdos975Asymptotic (fun n ↦ n ^ 2 + 1) (3 / π) := by
+    ∃ (c : ℝ), 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum (X ^ 2 + 1) x / (x * x.log)) atTop (nhds c) := by
   sorry
 
 end Erdos975
