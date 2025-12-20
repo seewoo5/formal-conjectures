@@ -51,7 +51,7 @@ does there exists a constant $c = c(f) > 0$ such that
 $\sum_{n \le x} \tau(f(n)) \approx c \cdot x \log x$?
 -/
 @[category research open, AMS 11]
-theorem erdos_975 (f : ℤ[X]) (hf : Irreducible f) (hf_nonneg : ∃ N : ℕ, ∀ n ≥ N, 1 ≤ (f.eval ↑n)) :
+theorem erdos_975 (f : ℤ[X]) (hf : Irreducible f) (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) :
     (∃ (c : ℝ), 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c)) ↔
     answer(sorry) := by
   sorry
@@ -60,12 +60,14 @@ theorem erdos_975 (f : ℤ[X]) (hf : Irreducible f) (hf_nonneg : ∃ N : ℕ, �
 The correctness of growth rate is shown in [Va39] (lower bound) and [Er52b] (upper bound).
 -/
 @[category research solved, AMS 11]
-theorem erdos_975.variant.upper_bound (f : ℤ[X]) (hf : Irreducible f) :
+theorem erdos_975.variant.upper_bound (f : ℤ[X]) (hf : Irreducible f)
+    (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) :
     Erdos975Sum f =O[atTop] (fun x ↦ x * x.log) := by
   sorry
 
 @[category research solved, AMS 11]
-theorem erdos_975.variant.lower_bound (f : ℤ[X]) (hf : Irreducible f) :
+theorem erdos_975.variant.lower_bound (f : ℤ[X]) (hf : Irreducible f)
+    (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) :
     (fun x ↦ x * x.log) =O[atTop] (Erdos975Sum f) := by
   sorry
 
@@ -78,8 +80,8 @@ TODO: formalize Hurwitz class numbers and the expression of the constant in term
 -/
 @[category research solved, AMS 11]
 theorem erdos_975.variant.quadratic (f : ℤ[X]) (hf : Irreducible f)
-    (hf_nonneg : ∃ N : ℕ, ∀ n ≥ N, 1 ≤ (f.eval ↑n)) (hf_degree : f.degree = 2) :
-    ∃ (c : ℝ), 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c) := by
+    (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) (hf_degree : f.degree = 2) (c : ℝ) :
+    c = answer(sorry) ∧ 0 < c ∧ Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c) := by
   sorry
 
 /--
