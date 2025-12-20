@@ -52,16 +52,16 @@ $\sum_{n \le x} \tau(f(n)) \approx c \cdot x \log x$?
 -/
 @[category research open, AMS 11]
 theorem erdos_975 : (∀ (f : ℤ[X]), Irreducible f → (∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) →
-    (∃ c > (0 : ℝ), Tendsto (fun x ↦ Erdos975Sum f x / (x * x.log)) atTop (nhds c))) ↔
+    ∃ c > (0 : ℝ), Tendsto (fun x ↦ Erdos975Sum f x / (x * log x)) atTop (nhds c)) ↔
     answer(sorry) := by
   sorry
 
 /--
-The correctness of growth rate is shown in [Va39] (lower bound) and [Er52b] (upper bound).
+The correctness of the growth rate is shown in [Va39] (lower bound) and [Er52b] (upper bound).
 -/
 @[category research solved, AMS 11]
 theorem erdos_975.variant.upper_bound (f : ℤ[X]) (hf : Irreducible f)
-    (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) : Erdos975Sum f =O[atTop] (fun x ↦ x * x.log) := by
+    (hf_pos : ∀ᶠ n : ℕ in atTop, 1 ≤ f.eval ↑n) : Erdos975Sum f =O[atTop] (fun x ↦ x * log x) := by
   sorry
 
 @[category research solved, AMS 11]
