@@ -22,6 +22,7 @@ import FormalConjectures.Util.ProblemImports
 *Reference:* [erdosproblems.com/494](https://www.erdosproblems.com/494)
 -/
 
+open Filter
 namespace Erdos494
 
 /--
@@ -40,13 +41,13 @@ $|A| \ne 2^l$ for $l \ge 0$.
 They also gave counterexamples when $k = 2$ and $|A| = 2^l$.
 -/
 @[category research solved, AMS 11] -- Change tag
-theorem erdos_494.variant.k_eq_2_card_not_pow_two {card : ℕ} (hcard : ¬∃ l : ℕ, card = 2 ^ l) :
-    erdos_494_unique 2 card := by
+theorem erdos_494.variant.k_eq_2_card_not_pow_two :
+    ∀ card : ℕ, (¬∃ l : ℕ, card = 2 ^ l) → erdos_494_unique 2 card := by
   sorry
 
 @[category research solved, AMS 11] -- Change tag
-theorem erdos_494.variant.k_eq_2_card_pow_two {card : ℕ} (hcard : ∃ l : ℕ, card = 2 ^ l) :
-    ¬erdos_494_unique 2 card := by
+theorem erdos_494.variant.k_eq_2_card_pow_two :
+    ∀ card : ℕ, (∃ l : ℕ, card = 2 ^ l) → ¬erdos_494_unique 2 card := by
   sorry
 
 /--
@@ -67,11 +68,34 @@ theorem erdos_494.variant.k_eq_4_card_gt_12 :
   sorry
 
 /--
-Kruyt noted that the conjecture fails when $k = |A|$.
+Kruyt noted that the conjecture fails when $k = |A|$, by rotating $A$ around an appropriate point.
 -/
 @[category research solved, AMS 11] -- Change tag
-theorem erdos_494.variant.k_eq_card {card : ℕ} (hcard : 1 ≤ card) :
-    ¬erdos_494_unique card card := by
+theorem erdos_494.variant.k_eq_card :
+    ∀ card : ℕ, 1 ≤ card → ¬erdos_494_unique card card := by
+  sorry
+
+/--
+Gordon, Fraenkel, and Straus [GRS62] proved that the claim is true for all $k > 2$ when
+$|A|$ is sufficiently large.
+-/
+@[category research solved, AMS 11] -- Change tag
+theorem erdos_494.variant.gordon_fraenkel_straus :
+    ∀ k : ℕ, 2 < k → (∀ᶠ card in atTop, erdos_494_unique k card) := by
+  sorry
+
+/--
+A version in [Er61] by Erdős is product instead of sum, which is false.
+Counterexample (by Steinerberger): consider $k = 3$ and let
+$A = \{1, \zeta_6, \zeta_6^2, \zeta_6^4\}$ and $B = \{1, \zeta_6^2, \zeta_6^3, \zeta_6^4\}$.
+-/
+noncomputable def erdos494_A_k_prod (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
+  ((A.powersetCard k).val.map (fun s => s.prod id))
+
+@[category research solved, AMS 11] -- Change tag
+theorem erdos_494.variant.product :
+    ∃ (A B : Finset ℂ), A.card = B.card ∧ erdos494_A_k_prod A 3 = erdos494_A_k_prod B 3 ∧
+    A ≠ B := by
   sorry
 
 end Erdos494
