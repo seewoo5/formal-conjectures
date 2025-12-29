@@ -19,7 +19,14 @@ import FormalConjectures.Util.ProblemImports
 /-!
 # Erdős Problem 494
 
-*Reference:* [erdosproblems.com/494](https://www.erdosproblems.com/494)
+*References:*
+  - [erdosproblems.com/494](https://www.erdosproblems.com/494)
+  - [SeSt58] Selfridge, J. L. and Straus, E., On the determination of numbers by their sums
+      of a fixed order. Pacific Journal of Math. (1958), 847-856.
+  - [Er61] Erdős, Paul, Some unsolved problems. Magyar Tud. Akad. Mat. Kutató Int. Közl. (1961),
+      221-254.
+  - [GFS62] Gordon, B. and Fraenkel, A. S. and Straus, E. G., On the determination of sets
+      by the sets of sums of a certain order. Pacific J. Math. (1962), 187--196.
 -/
 
 open Filter
@@ -40,12 +47,12 @@ Selfridge and Straus [SeSt58] showed that the conjecture is true when $k = 2$ an
 $|A| \ne 2^l$ for $l \ge 0$.
 They also gave counterexamples when $k = 2$ and $|A| = 2^l$.
 -/
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_2_card_not_pow_two :
     ∀ card : ℕ, (¬∃ l : ℕ, card = 2 ^ l) → erdos_494_unique 2 card := by
   sorry
 
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_2_card_pow_two :
     ∀ card : ℕ, (∃ l : ℕ, card = 2 ^ l) → ¬erdos_494_unique 2 card := by
   sorry
@@ -57,29 +64,38 @@ Selfridge and Straus [SeSt58] also showed that the conjecture is true when
 More generally, they proved that $A$ is determined by $A_k$ (and $|A|$) if $|A|$ is divisible by
 a prime greater than $k$.
 -/
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_3_card_gt_6 :
-    ∀ card : ℕ, card > 6 → erdos_494_unique 3 card := by
+    ∀ card : ℕ, 6 < card → erdos_494_unique 3 card := by
   sorry
 
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_4_card_gt_12 :
-    ∀ card : ℕ, card > 12 → erdos_494_unique 4 card := by
+    ∀ card : ℕ, 12 < card → erdos_494_unique 4 card := by
   sorry
 
 /--
-Kruyt noted that the conjecture fails when $k = |A|$, by rotating $A$ around an appropriate point.
+Kruyt noted that the conjecture fails when $|A| = k$, by rotating $A$ around an appropriate point.
 -/
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_card :
-    ∀ card : ℕ, 1 ≤ card → ¬erdos_494_unique card card := by
+    ∀ k : ℕ, 2 < k → ¬erdos_494_unique k k := by
+  sorry
+
+/--
+Similarly, Tao noted that the conjecture fails when $|A| = 2k$, by taking $A$ to be a set of
+the total sum 0 and considering $-A$.
+-/
+@[category research solved, AMS 5]
+theorem erdos_494.variant.card_eq_2k :
+    ∀ k : ℕ, 2 < k → ¬erdos_494_unique k (2 * k) := by
   sorry
 
 /--
 Gordon, Fraenkel, and Straus [GRS62] proved that the claim is true for all $k > 2$ when
 $|A|$ is sufficiently large.
 -/
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.gordon_fraenkel_straus :
     ∀ k : ℕ, 2 < k → (∀ᶠ card in atTop, erdos_494_unique k card) := by
   sorry
@@ -92,7 +108,7 @@ $A = \{1, \zeta_6, \zeta_6^2, \zeta_6^4\}$ and $B = \{1, \zeta_6^2, \zeta_6^3, \
 noncomputable def erdos494_A_k_prod (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
   ((A.powersetCard k).val.map (fun s => s.prod id))
 
-@[category research solved, AMS 11] -- Change tag
+@[category research solved, AMS 5]
 theorem erdos_494.variant.product :
     ∃ (A B : Finset ℂ), A.card = B.card ∧ erdos494_A_k_prod A 3 = erdos494_A_k_prod B 3 ∧
     A ≠ B := by
