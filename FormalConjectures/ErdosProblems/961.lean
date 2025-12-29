@@ -59,7 +59,7 @@ Erdos [Er55d] proved $f(k) < 3 \frac{k}{\log k}$ for sufficiently large $k$.
 -/
 @[category research solved, AMS 11]
 theorem erdos_961.erdos_upper_bound :
-    ∀ᶠ k in atTop, Erdos961_f k < 3 * k / Nat.log k := by
+    ∀ᶠ k in atTop, Erdos961_f k < 3 * k / log k := by
   sorry
 
 /--
