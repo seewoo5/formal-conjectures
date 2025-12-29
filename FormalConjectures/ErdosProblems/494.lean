@@ -74,6 +74,11 @@ theorem erdos_494.variant.k_eq_4_card_gt_12 :
     ∀ card : ℕ, 12 < card → erdos_494_unique 4 card := by
   sorry
 
+@[category research solved, AMS 5]
+theorem erdos_494.variant.card_divisible_by_prime_gt_k :
+    ∀ (k card : ℕ), ∃ p : ℕ, p.Prime ∧ k < p ∧ p ∣ card → erdos_494_unique k card := by
+  sorry
+
 /--
 Kruyt noted that the conjecture fails when $|A| = k$, by rotating $A$ around an appropriate point.
 -/
