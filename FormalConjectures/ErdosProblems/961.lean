@@ -33,11 +33,11 @@ Sylvester and Schur [Er34] proved that every set of $k$ consecutive integers gre
 contains an integer divisible by a prime greater than $k$, i.e. not $(k+1)$-smooth.
 -/
 @[category research solved, AMS 11]
-theorem erdos_961.sylvester_schur (k : ℕ) : Erdos961 k k := by
+theorem erdos_961.sylvester_schur (k : ℕ) : Erdos961Prop k k := by
   sorry
 
 @[category research solved, AMS 11]
-theorem erdos_961.well_defined (k : ℕ) : ∃ n, Erdos961 k n := by
+theorem erdos_961.well_defined (k : ℕ) : ∃ n, Erdos961Prop k n := by
   use k
   exact erdos_961.sylvester_schur k
 
@@ -45,13 +45,13 @@ theorem erdos_961.well_defined (k : ℕ) : ∃ n, Erdos961 k n := by
 For $k$, let $f(k)$ be the minimal $n$ such that every set of $n$ consecutive integers $>k$ contains
 an integer divisible by a prime $>k$, i.e. not $(k+1)$-smooth.
 -/
-noncomputable def Erdos961_f (k : ℕ) : ℕ := Nat.find (erdos_961.well_defined k)
+noncomputable def f (k : ℕ) : ℕ := Nat.find (erdos_961.well_defined k)
 
 /--
 It is conjectured that $f(k) \ll (\log k)^O(1)$.
 -/
 @[category research open, AMS 11]
-theorem erdos_961 : (∃ C > 0, ∀ᶠ k in atTop, Erdos961_f k < (log (k : ℝ)) ^ C) ↔ answer(sorry) := by
+theorem erdos_961 : (∃ C > 0, ∀ᶠ k in atTop, f k < (log (k : ℝ)) ^ C) ↔ answer(sorry) := by
   sorry
 
 /--
@@ -59,7 +59,7 @@ Erdos [Er55d] proved $f(k) < 3 \frac{k}{\log k}$ for sufficiently large $k$.
 -/
 @[category research solved, AMS 11]
 theorem erdos_961.erdos_upper_bound :
-    ∀ᶠ k in atTop, Erdos961_f k < 3 * k / log k := by
+    ∀ᶠ k in atTop, f k < 3 * k / log k := by
   sorry
 
 /--
@@ -68,8 +68,7 @@ $f(k) \ll \frac{\log \log \log k}{\log \log k} \frac{k}{\log k}$.
 -/
 @[category research solved, AMS 11]
 theorem erdos_961.jutila_ramachandra_shorey_upper_bound :
-    (fun k => (Erdos961_f k : ℝ)) =O[atTop]
-      fun k => log (log (log k)) / log (log k) * (k / log k) := by
+    (fun k => (f k : ℝ)) =O[atTop] fun k => log (log (log k)) / log (log k) * (k / log k) := by
   sorry
 
 end Erdos961
