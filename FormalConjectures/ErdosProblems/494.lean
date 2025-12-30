@@ -30,17 +30,18 @@ import FormalConjectures.Util.ProblemImports
 -/
 
 open Filter
+
 namespace Erdos494
 
 /--
-For a finite set $A \subset \mathbb{C}$ and $k \ge 1$, define $A_k$ as a multiset consisting of
+For a finite set $A \subset \mathbb{C}$ and $k \ge 1$, define $A_k$ as the multiset consisting of
 all sums of $k$ distinct elements of $A$.
 -/
 noncomputable def erdos494_A_k (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
-  ((A.powersetCard k).val.map (fun s => s.sum id))
+  A.powersetCard k).val.map fun s => s.sum id
 
 def erdos_494_unique (k : ℕ) (card : ℕ) :=
-  ∀ A B : Finset ℂ, A.card = card → A.card = B.card → erdos494_A_k A k = erdos494_A_k B k → A = B
+  ∀ A B : Finset ℂ, A.card = card → B.card = card → erdos494_A_k A k = erdos494_A_k B k → A = B
 
 /--
 Selfridge and Straus [SeSt58] showed that the conjecture is true when $k = 2$ and
@@ -102,7 +103,7 @@ $|A|$ is sufficiently large.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.gordon_fraenkel_straus :
-    ∀ k : ℕ, 2 < k → (∀ᶠ card in atTop, erdos_494_unique k card) := by
+    ∀ k : ℕ, 2 < k → ∀ᶠ card in atTop, erdos_494_unique k card := by
   sorry
 
 /--
