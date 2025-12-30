@@ -71,7 +71,7 @@ theorem oppermann_implies_legendre (n : ℕ) (hn : 1 ≤ n) (P : type_of% opperm
   sorry
 
 /--
-Ferreira [Fe23] proved that Oppermann's conjecture is true for sufficiently large x.
+Ferreira proved that Oppermann's conjecture is true for sufficiently large x.
 -/
 @[category research solved, AMS 11]
 theorem oppermann_conjecture.ferreira_large_x : ∀ᶠ x in atTop,

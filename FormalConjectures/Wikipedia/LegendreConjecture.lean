@@ -39,7 +39,7 @@ theorem legendre_conjecture :
   sorry
 
 /--
-Ferreira [Fe23] proved that the conjecture is true for sufficiently large n.
+Ferreira proved that the conjecture is true for sufficiently large n.
 -/
 @[category research solved, AMS 11]
 theorem legendre_conjecture.ferreira_large_n :
