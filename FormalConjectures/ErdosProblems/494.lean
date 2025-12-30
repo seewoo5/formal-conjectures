@@ -50,7 +50,7 @@ They also gave counterexamples when $k = 2$ and $|A| = 2^l$.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_2_card_not_pow_two :
-    ∀ card : ℕ, (¬∃ l : ℕ, card = 2 ^ l) → erdos_494_unique 2 card := by
+    ∀ card : ℕ, (∀ l : ℕ, card ≠ 2 ^ l) → erdos_494_unique 2 card := by
   sorry
 
 @[category research solved, AMS 5]
