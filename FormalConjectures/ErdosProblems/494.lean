@@ -67,12 +67,12 @@ a prime greater than $k$.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_3_card_gt_6 :
-    ∀ card : ℕ, 6 < card → Erdos494Unique 3 card := by
+    ∀ card > 6, Erdos494Unique 3 card := by
   sorry
 
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_4_card_gt_12 :
-    ∀ card : ℕ, 12 < card → Erdos494Unique 4 card := by
+    ∀ card > 12, Erdos494Unique 4 card := by
   sorry
 
 @[category research solved, AMS 5]
@@ -85,7 +85,7 @@ Kruyt noted that the conjecture fails when $|A| = k$, by rotating $A$ around an 
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_card :
-    ∀ k : ℕ, 2 < k → ¬Erdos494Unique k k := by
+    ∀ k > 2, ¬Erdos494Unique k k := by
   sorry
 
 /--
@@ -94,7 +94,7 @@ the total sum 0 and considering $-A$.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.card_eq_2k :
-    ∀ k : ℕ, 2 < k → ¬Erdos494Unique k (2 * k) := by
+    ∀ k > 2, ¬Erdos494Unique k (2 * k) := by
   sorry
 
 /--
@@ -103,7 +103,7 @@ $|A|$ is sufficiently large.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.gordon_fraenkel_straus :
-    ∀ k : ℕ, 2 < k → ∀ᶠ card in atTop, Erdos494Unique k card := by
+    ∀ k > 2, ∀ᶠ card in atTop, Erdos494Unique k card := by
   sorry
 
 /--
