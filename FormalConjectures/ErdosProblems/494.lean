@@ -37,11 +37,11 @@ namespace Erdos494
 For a finite set $A \subset \mathbb{C}$ and $k \ge 1$, define $A_k$ as the multiset consisting of
 all sums of $k$ distinct elements of $A$.
 -/
-noncomputable def erdos494_A_k (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
+noncomputable def sumMultiset (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
   (A.powersetCard k).val.map fun s => s.sum id
 
 def erdos_494_unique (k : ℕ) (card : ℕ) :=
-  ∀ A B : Finset ℂ, A.card = card → B.card = card → erdos494_A_k A k = erdos494_A_k B k → A = B
+  ∀ A B : Finset ℂ, A.card = card → B.card = card → sumMultiset A k = sumMultiset B k → A = B
 
 /--
 Selfridge and Straus [SeSt58] showed that the conjecture is true when $k = 2$ and
@@ -111,12 +111,12 @@ A version in [Er61] by Erdős is product instead of sum, which is false.
 Counterexample (by Steinerberger): consider $k = 3$ and let
 $A = \{1, \zeta_6, \zeta_6^2, \zeta_6^4\}$ and $B = \{1, \zeta_6^2, \zeta_6^3, \zeta_6^4\}$.
 -/
-noncomputable def erdos494_A_k_prod (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
+noncomputable def prodMultiset (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
   ((A.powersetCard k).val.map (fun s => s.prod id))
 
 @[category research solved, AMS 5]
 theorem erdos_494.variant.product :
-    ∃ (A B : Finset ℂ), A.card = B.card ∧ erdos494_A_k_prod A 3 = erdos494_A_k_prod B 3 ∧
+    ∃ (A B : Finset ℂ), A.card = B.card ∧ prodMultiset A 3 = prodMultiset B 3 ∧
     A ≠ B := by
   sorry
 
