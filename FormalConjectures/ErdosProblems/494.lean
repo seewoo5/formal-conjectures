@@ -117,7 +117,7 @@ noncomputable def prodMultiset (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
 @[category research solved, AMS 5]
 theorem erdos_494.variant.product :
     ∃ (A B : Finset ℂ), A.card = B.card ∧ prodMultiset A 3 = prodMultiset B 3 ∧
-    A ≠ B := by
+      A ≠ B := by
   sorry
 
 end Erdos494
