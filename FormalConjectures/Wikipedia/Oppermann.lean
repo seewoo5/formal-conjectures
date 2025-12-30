@@ -21,7 +21,7 @@ import FormalConjectures.Util.ProblemImports
 
 *References:*
 - [Wikipedia](https://en.wikipedia.org/wiki/Oppermann%27s_conjecture)
-- [Fe23] Luan Alberto Ferreira, Real exponential sums over primes and prime gaps, arXiv:2307.08725
+- [Luan Alberto Ferreira, *Real exponential sums over primes and prime gaps*](https://arxiv.org/abs/2307.08725)
 -/
 
 open Finset Filter
