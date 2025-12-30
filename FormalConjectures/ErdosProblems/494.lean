@@ -38,7 +38,7 @@ For a finite set $A \subset \mathbb{C}$ and $k \ge 1$, define $A_k$ as the multi
 all sums of $k$ distinct elements of $A$.
 -/
 noncomputable def erdos494_A_k (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
-  A.powersetCard k).val.map fun s => s.sum id
+  (A.powersetCard k).val.map fun s => s.sum id
 
 def erdos_494_unique (k : ℕ) (card : ℕ) :=
   ∀ A B : Finset ℂ, A.card = card → B.card = card → erdos494_A_k A k = erdos494_A_k B k → A = B
