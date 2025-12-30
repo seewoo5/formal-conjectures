@@ -55,7 +55,7 @@ theorem erdos_494.variant.k_eq_2_card_not_pow_two :
 
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_2_card_pow_two :
-    ∀ card : ℕ, (∃ l : ℕ, card = 2 ^ l) → ¬erdos_494_unique 2 card := by
+    ∀ card : ℕ, (∃ l : ℕ, card = 2 ^ l) → ¬Erdos494Unique 2 card := by
   sorry
 
 /--
@@ -85,7 +85,7 @@ Kruyt noted that the conjecture fails when $|A| = k$, by rotating $A$ around an 
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_card :
-    ∀ k : ℕ, 2 < k → ¬erdos_494_unique k k := by
+    ∀ k : ℕ, 2 < k → ¬Erdos494Unique k k := by
   sorry
 
 /--
@@ -94,7 +94,7 @@ the total sum 0 and considering $-A$.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.card_eq_2k :
-    ∀ k : ℕ, 2 < k → ¬erdos_494_unique k (2 * k) := by
+    ∀ k : ℕ, 2 < k → ¬Erdos494Unique k (2 * k) := by
   sorry
 
 /--
