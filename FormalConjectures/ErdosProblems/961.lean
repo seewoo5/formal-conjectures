@@ -25,7 +25,7 @@ open Classical Filter Real
 
 namespace Erdos961
 
-noncomputable def Erdos961 (k n : ℕ) : Prop :=
+noncomputable def Erdos961Prop (k n : ℕ) : Prop :=
   ∀ m ≥ k + 1, ∃ i ∈ Set.Ico m (m + n), ¬ i ∈ Nat.smoothNumbers (k + 1)
 
 /--
@@ -69,7 +69,7 @@ $f(k) \ll \frac{\log \log \log k}{\log \log k} \frac{k}{\log k}$.
 @[category research solved, AMS 11]
 theorem erdos_961.jutila_ramachandra_shorey_upper_bound :
     (fun k => (Erdos961_f k : ℝ)) =O[atTop]
-      fun k => (log (log (log (k : ℝ))) / log (log (k : ℝ))) * ((k : ℝ) / log (k : ℝ)) := by
+      fun k => log (log (log k)) / log (log k) * (k / log k) := by
   sorry
 
 end Erdos961
