@@ -40,7 +40,7 @@ all sums of $k$ distinct elements of $A$.
 noncomputable def sumMultiset (A : Finset ℂ) (k : ℕ) : Multiset ℂ :=
   (A.powersetCard k).val.map fun s => s.sum id
 
-def erdos_494_unique (k : ℕ) (card : ℕ) :=
+def Erdos494Unique (k : ℕ) (card : ℕ) :=
   ∀ A B : Finset ℂ, A.card = card → B.card = card → sumMultiset A k = sumMultiset B k → A = B
 
 /--
@@ -50,7 +50,7 @@ They also gave counterexamples when $k = 2$ and $|A| = 2^l$.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_2_card_not_pow_two :
-    ∀ card : ℕ, (∀ l : ℕ, card ≠ 2 ^ l) → erdos_494_unique 2 card := by
+    ∀ card : ℕ, (∀ l : ℕ, card ≠ 2 ^ l) → Erdos494Unique 2 card := by
   sorry
 
 @[category research solved, AMS 5]
@@ -67,17 +67,17 @@ a prime greater than $k$.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_3_card_gt_6 :
-    ∀ card : ℕ, 6 < card → erdos_494_unique 3 card := by
+    ∀ card : ℕ, 6 < card → Erdos494Unique 3 card := by
   sorry
 
 @[category research solved, AMS 5]
 theorem erdos_494.variant.k_eq_4_card_gt_12 :
-    ∀ card : ℕ, 12 < card → erdos_494_unique 4 card := by
+    ∀ card : ℕ, 12 < card → Erdos494Unique 4 card := by
   sorry
 
 @[category research solved, AMS 5]
 theorem erdos_494.variant.card_divisible_by_prime_gt_k :
-    ∀ (k card p : ℕ), p.Prime ∧ k < p ∧ p ∣ card → erdos_494_unique k card := by
+    ∀ (k card p : ℕ), p.Prime ∧ k < p ∧ p ∣ card → Erdos494Unique k card := by
   sorry
 
 /--
@@ -103,7 +103,7 @@ $|A|$ is sufficiently large.
 -/
 @[category research solved, AMS 5]
 theorem erdos_494.variant.gordon_fraenkel_straus :
-    ∀ k : ℕ, 2 < k → ∀ᶠ card in atTop, erdos_494_unique k card := by
+    ∀ k : ℕ, 2 < k → ∀ᶠ card in atTop, Erdos494Unique k card := by
   sorry
 
 /--
