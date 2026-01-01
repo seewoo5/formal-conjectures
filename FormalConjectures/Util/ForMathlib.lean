@@ -18,6 +18,7 @@ import FormalConjectures.ForMathlib.Algebra.GCDMonoid.Finset
 import FormalConjectures.ForMathlib.Algebra.Group.Action.Pointwise.Set.Basic
 import FormalConjectures.ForMathlib.Algebra.Group.Indicator
 import FormalConjectures.ForMathlib.Algebra.Order.Group.Pointwise.Interval
+import FormalConjectures.ForMathlib.Algebra.Polynomial.Algebra
 import FormalConjectures.ForMathlib.Algebra.Polynomial.Basic
 import FormalConjectures.ForMathlib.Algebra.Polynomial.HasseDeriv
 import FormalConjectures.ForMathlib.AlgebraicGeometry.ProjectiveSpace
