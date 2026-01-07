@@ -61,7 +61,7 @@ Erdos [Er55d] improved this to $P(n, k) \gg k \log k $ for $k \le n/2$.
 -/
 @[category research solved, AMS 11]
 theorem erdos_683.variant.erdos_log :
-    ∃ C > 0, ∀ n k : ℕ, 0 < k ∧ k ≤ n / 2 → P n k ≥ C * k * Real.log k := by
+    ∃ C > 0, ∀ n k : ℕ, 0 < k ∧ k ≤ n / 2 → P n k > C * k * Real.log k := by
   sorry
 
 /--
