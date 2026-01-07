@@ -36,7 +36,7 @@ def withBotToNat : WithBot ℕ → ℕ
 Let $P(n, k)$ be the largest prime factor of $\binom{n}{k}$.
 Note that `(n.choose k).primeFactors.max` returns a `WithBot ℕ` to account for the empty set case,
 so we convert it to `ℕ` with `withBotToNat`. Note that we will only consider the case where
-$0 < k < n$, so $\binom{n}{k}$ is always greater than 0 and thus has at least one prime factor.
+$0 < k < n$, so $\binom{n}{k}$ is always greater than 1 and thus has at least one prime factor.
 -/
 def P (n k : ℕ) : ℕ := withBotToNat (n.choose k).primeFactors.max
 
