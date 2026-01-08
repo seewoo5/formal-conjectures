@@ -28,24 +28,17 @@ import FormalConjectures.Util.ProblemImports
 
 namespace Erdos683
 
-def withBotToNat : WithBot ℕ → ℕ
-| ⊥       => 0
-| (n : ℕ) => n
-
 /--
 Let $P(n, k)$ be the largest prime factor of $\binom{n}{k}$.
-Note that `(n.choose k).primeFactors.max` returns a `WithBot ℕ` to account for the empty set case,
-so we convert it to `ℕ` with `withBotToNat`. Note that we will only consider the case where
-$0 < k < n$, so $\binom{n}{k}$ is always greater than 1 and thus has at least one prime factor.
 -/
-def P (n k : ℕ) : ℕ := withBotToNat (n.choose k).primeFactors.max
+def P (n k : ℕ) : ℕ := (n.choose k).primeFactors.sup id
 
 /--
 There exists $c > 0$ such that $P(n, k) > \min\{n-k+1, k^{1 + c}\}$ for all $0 \le k \le n$.}
 -/
 @[category research open, AMS 11]
-theorem erdos_683 : (∃ c > 0, ∀ n k : ℕ, 0 < k ∧ k < n → P n k > min (n - k + 1) (k ^ (1 + c))) ↔
-    answer(sorry) := by
+theorem erdos_683 : answer(sorry) ↔
+    (∃ c > 0, ∀ n k : ℕ, 0 < k ∧ k < n → P n k > min (n - k + 1) (k ^ (1 + c))) := by
   sorry
 
 /--
