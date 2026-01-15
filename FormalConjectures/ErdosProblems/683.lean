@@ -16,6 +16,8 @@ limitations under the License.
 
 import FormalConjectures.Util.ProblemImports
 
+import FormalConjectures.ErdosProblems.«961»
+
 /-!
 # Erdős Problem 683
 
@@ -27,6 +29,8 @@ import FormalConjectures.Util.ProblemImports
 -/
 
 namespace Erdos683
+
+open Filter Real Erdos961
 
 /--
 Let $P(n, k)$ be the largest prime factor of $\binom{n}{k}$.
@@ -63,6 +67,15 @@ Standard heuristics suggest that $P(n, k) > e^{c\sqrt{k}}$ for some constant $c 
 @[category research open, AMS 11]
 theorem erdos_683.variant.exp_sqrt :
     ∃ c > 0, ∀ n k : ℕ, 0 < k ∧ k ≤ n / 2 → P n k > Real.exp (c * Real.sqrt k) := by
+  sorry
+
+/--
+Erdos 961 is equivalent to Erdos 683.
+-/
+@[category research solved, AMS 11]
+theorem erdos_683_equiv_erdos_961 :
+    (∃ c > 0, ∀ n k : ℕ, 0 < k ∧ k < n → P n k > min (n - k + 1) (k ^ (1 + c))) ↔
+    (∃ C > 0, ∀ᶠ k in atTop, f k < (log (k : ℝ)) ^ C) := by
   sorry
 
 end Erdos683
