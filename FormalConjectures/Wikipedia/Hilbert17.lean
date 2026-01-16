@@ -32,13 +32,12 @@ open Real MvPolynomial
 
 namespace Hilbert17
 
-abbrev MvRatFunc (σ K: Type*) [CommRing K] := FractionRing (MvPolynomial σ K)
+abbrev MvRatFunc (σ K : Type*) [CommRing K] := FractionRing (MvPolynomial σ K)
 
 @[category research solved, AMS 12]
 theorem hilbert_17th_problem (n : ℕ) (f : MvPolynomial (Fin n) ℝ)
-    (h : ∀ x : Fin n → ℝ, f.eval x ≥ 0) :
-    ∃ (m : ℕ) (g : Fin m → MvRatFunc (Fin n) ℝ),
-      f • (∑ i, (g i) ^ 2) = ∑ i, (g i) ^ 2 := by
+    (h : ∀ x : Fin n → ℝ, 0 ≤ f.eval x) :
+    ∃ (m : ℕ) (g : Fin m → MvRatFunc (Fin n) ℝ), algebraMap _ _ f = ∑ i, (g i) ^ 2 := by
   sorry
 
 /--
@@ -47,7 +46,7 @@ $f(x, y) = x^4 y^2 + x^2 y^4 - 3 x^2 y^2 + 1$ takes only nonnegative values but 
 written as a sum of squares of polynomials.
 -/
 noncomputable def f : MvPolynomial (Fin 2) ℝ :=
-  (X 0) ^ 4 * (X 1) ^ 2 + (X 0) ^ 2 * (X 1) ^ 4 - 3 * (X 0) ^ 2 * (X 1) ^ 2 + 1
+  X 0 ^ 4 * X 1 ^ 2 + X 0 ^ 2 * X 1 ^ 4 - 3 * X 0 ^ 2 * X 1 ^ 2 + 1
 
 @[category high_school, AMS 12]
 theorem f_nonneg : ∀ x y : ℝ, 0 ≤ f.eval ![x, y] := by
@@ -71,8 +70,7 @@ $n$ variables of degree $2d$ can be written as a sum of squares of polynomials i
 def Hilbert17thProblemHomogenousPoly (n d : ℕ) : Prop :=
   ∀ (f : MvPolynomial (Fin n) ℝ) (hhom : f.IsHomogeneous n)
     (hdeg : f.totalDegree = 2 * d)
-    (hnonneg : ∀ x : Fin n → ℝ, f.eval x ≥ 0),
-    ∃ (m : ℕ) (g : Fin m → MvPolynomial (Fin n) ℝ),
+    (hnonneg : ∀ x : Fin n → ℝ, 0 ≤ f.eval x), ∃ (m : ℕ) (g : Fin m → MvPolynomial (Fin n) ℝ),
       f = ∑ i, (g i) ^ 2
 
 @[category research solved, AMS 12]
