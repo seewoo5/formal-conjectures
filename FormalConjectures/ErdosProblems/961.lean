@@ -41,13 +41,12 @@ theorem erdos_961.sylvester_schur_1_1 : Erdos961Prop 1 1 := by
   intro m hm
   use m
   constructor
-  · simp only [Set.mem_Ico]
-    exact ⟨le_refl m, Nat.lt_succ_self m⟩
+  · simp
   · rw [Nat.mem_smoothNumbers]
     push_neg
     intro hm0
     obtain ⟨p, hp, hpm⟩ := Nat.exists_prime_and_dvd (by omega : m ≠ 1)
-    exact ⟨p, (Nat.mem_primeFactorsList hm0).mpr ⟨hp, hpm⟩, Nat.Prime.two_le hp⟩
+    exact ⟨p, (Nat.mem_primeFactorsList hm0).mpr ⟨hp, hpm⟩, hp.two_le⟩
 
 @[category research solved, AMS 11]
 theorem erdos_961.well_defined (k : ℕ) (hk : 0 < k): ∃ n, Erdos961Prop k n := by
