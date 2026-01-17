@@ -57,7 +57,7 @@ theorem f_nonneg : ∀ x y : ℝ, 0 ≤ f.eval ![x, y] := by
 
 @[category high_school, AMS 12]
 theorem f_not_sum_of_squares :
-    ¬∃ (n : ℕ) (S : Fin n → MvPolynomial (Fin 2) ℝ), f = ∑ i, (S i) ^ 2 := by
+    ¬∃ (n : ℕ) (S : Fin n → MvPolynomial (Fin 2) ℝ), f = ∑ i, S i ^ 2 := by
   sorry
 
 /--
@@ -75,7 +75,7 @@ def Hilbert17thProblemHomogenousPoly (n d : ℕ) : Prop :=
 
 @[category research solved, AMS 12]
 theorem hilbert_17th_problem_poly : ∀ n d, Hilbert17thProblemHomogenousPoly n d ↔
-    n = 2 ∨ d = 1 ∨ (n = 3 ∧ d = 2) := by
+    n = 2 ∨ d = 1 ∨ n = 3 ∧ d = 2 := by
   sorry
 
 end Hilbert17
