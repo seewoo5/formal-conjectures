@@ -50,7 +50,7 @@ Ruzsa [Ru04] proved an upper bound of $-\exp(O(\sqrt{\log N})$.
 theorem erdos_510.variant.ruzsa :
     ∃ (c : ℝ) (hc : 0 < c),
       ∀ N > 0, ∀ (A : Finset ℕ), 0 ∉ A → #A = N →
-      (∃ (θ : ℝ), (∑ n ∈ A, (n * θ).cos) < - exp (c * sqrt (log N))) := by
+      ∃ θ, ∑ n ∈ A, cos (n * θ) < - exp (c * sqrt (log N)) := by
   sorry
 
 /--
@@ -60,7 +60,7 @@ Bedert [Be25c] proved an upper bound of $-c N^{1/7}$.
 theorem erdos_510.variant.bedert :
     ∃ (c : ℝ) (hc : 0 < c),
       ∀ N > 0, ∀ (A : Finset ℕ), 0 ∉ A → #A = N →
-      (∃ (θ : ℝ), (∑ n ∈ A, (n * θ).cos) < - c * (N : ℝ)^(1 / 7)) := by
+      ∃ θ, ∑ n ∈ A, cos (n * θ) < - c * N ^ (1 / 7 : ℝ) := by
   sorry
 
 -- TODO(firsching): add the additional material
