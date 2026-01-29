@@ -1,5 +1,5 @@
 /-
-Copyright 2025 The Formal Conjectures Authors.
+Copyright 2026 The Formal Conjectures Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ Let $P(n, k)$ be the largest prime factor of $\binom{n}{k}$.
 def P (n k : ℕ) : ℕ := (n.choose k).primeFactors.sup id
 
 /--
-There exists $c > 0$ such that $P(n, k) > \min\{n-k+1, k^{1 + c}\}$ for all $0 \le k \le n$.}
+There exists $c > 0$ such that $P(n, k) > \min\{n-k+1, k^{1 + c}\}$ for all $0 < k < n$.}
 -/
 @[category research open, AMS 11]
 theorem erdos_683 : answer(sorry) ↔
