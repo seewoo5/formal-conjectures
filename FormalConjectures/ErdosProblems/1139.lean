@@ -15,20 +15,27 @@ limitations under the License.
 -/
 
 import FormalConjectures.Util.ProblemImports
+/-!
+# Erdős Problem 1139
 
-/-! # Woodall Primes
-
-References:
-* [Wikipedia/Woodall Number](https://en.wikipedia.org/wiki/Woodall_number#Woodall_primes)
-* [OEIS/A2234](https://oeis.org/A2234)
-
+*Reference:* [erdosproblems.com/1139](https://www.erdosproblems.com/1139)
 -/
 
-namespace WoodallPrimes
+open Nat Filter
+open scoped ArithmeticFunction
+open scoped Topology
 
-/-- There are infinitely many prime numbers of the form `k * 2 ^ k - 1` for `k > 1`. -/
+namespace Erdos1139
+
+/--
+Let $1\leq u_1 < u_2 < \cdots$ be the sequence of integers with at most $2$ prime factors.
+Is it true that $$\limsup_{k \to \infty} \frac{u_{k+1}-u_k}{\log k}=\infty?$$
+-/
 @[category research open, AMS 11]
-theorem infinitely_many_woodall_primes : {k : ℕ | 1 < k ∧ (k * 2 ^ k - 1).Prime}.Infinite := by
+theorem erdos_1139 :
+    answer(sorry) ↔
+      letI u := Nat.nth (fun n ↦ 0 < n ∧ Ω n ≤ 2)
+      atTop.limsup (fun k : ℕ ↦ (((u (k + 1) : ℝ) - (u k : ℝ)) / Real.log (↑k + 1) : EReal)) = ⊤ := by
   sorry
 
-end WoodallPrimes
+end Erdos1139
