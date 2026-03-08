@@ -69,19 +69,6 @@ theorem erdos_683.variant.exp_sqrt :
     ∃ c > 0, ∀ n k : ℕ, 0 < k ∧ k ≤ n / 2 → P n k > Real.exp (c * Real.sqrt k) := by
   sorry
 
-/--
-Erdos 961 is equivalent to Erdos 683.
--/
-@[category research solved, AMS 11]
-theorem erdos_683_implies_erdos_961 :
-    (∃ c₁ > (0 : ℝ), ∀ n k : ℕ, 0 < k ∧ k < n → P n k > min (n - k + 1 : ℝ) (k ^ (1 + c₁))) →
-    (∃ c₂ > (0 : ℝ), ∀ᶠ k in atTop, f k < (log (k : ℝ)) ^ c₂) := by
-  sorry
-
-@[category research solved, AMS 11]
-theorem erdos_961_implies_erdos_683 :
-    (∃ c₂ > (0 : ℝ), ∀ᶠ k in atTop, f k < (log (k : ℝ)) ^ c₂) →
-    (∃ c₁ > (0 : ℝ), ∀ n k : ℕ, 0 < k ∧ k < n → P n k > min (n - k + 1 : ℝ) (k ^ (1 + c₁))) := by
-  sorry
+-- TODO: Erdos 683 and 961 are equivalent.
 
 end Erdos683
