@@ -15,9 +15,6 @@ limitations under the License.
 -/
 import FormalConjectures.Util.ProblemImports
 
-open scoped ArithmeticFunction
-open Nat
-
 /-!
 # Conjectures associated with A56777
 
@@ -27,8 +24,11 @@ $\sigma(n+12) = \sigma(n) + 12$.
 The conjectures state identities connecting A56777 and prime quadruples (A7530), as
 well as congruences satisfied by the members of A56777.
 
-*References:* [oeis.org/A56777](https://oeis.org/A56777)
+*References:* [A56777](https://oeis.org/A56777)
 -/
+
+open Nat
+open scoped ArithmeticFunction.sigma
 
 namespace OeisA56777
 
