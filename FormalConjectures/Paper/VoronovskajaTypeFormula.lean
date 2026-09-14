@@ -309,17 +309,41 @@ in the theorem statement.
 The source asks for sufficiently smooth functions. This concrete version uses
 `ContDiffOn ℝ 2 f I` as a readable baseline regularity assumption; since the
 domain is the compact interval $[0,1]$, this also explains why no separate
-boundedness assumption is included here. The limit is sought as an explicit
-expression in $\alpha$, $f$ and $x$, so the answer is a function of these.
-The variants below record the unknown smoothness threshold more explicitly.
+boundedness assumption is included here. The variants below record the unknown
+smoothness threshold more explicitly.
+
+The limit exists and equals $\mu(\alpha)\,\sqrt{x(1-x)}\,f'(x)$, where
+$\mu(\alpha) = \int_0^\infty \bigl( (1 - \Phi(t))^{\alpha}
+- (1 - \Phi(t)^{\alpha}) \bigr)\,dt$ and $\Phi$ is the standard normal
+distribution function.
+
+Informal proof: the weights
+$w_{n,k} = J_{n,k}(x)^{\alpha} - J_{n,k+1}(x)^{\alpha}$ are nonnegative and sum
+to $1$, so the quadratic Taylor bound for $f \in C^2$ gives
+$$
+B_{n,\alpha} f(x) - f(x)
+  = \sum_{k=0}^{n} \bigl( f(k/n) - f(x) \bigr) w_{n,k}
+  = f'(x) \sum_{k=0}^{n} (k/n - x)\, w_{n,k}
+    + O\Bigl( \sum_{k=0}^{n} (k/n - x)^2 w_{n,k} \Bigr).
+$$
+The two sums on the right satisfy
+$$
+\sqrt{n} \sum_{k=0}^{n} (k/n - x)\, w_{n,k}
+  \longrightarrow \mu(\alpha)\,\sqrt{x(1-x)},
+\qquad
+\sqrt{n} \sum_{k=0}^{n} (k/n - x)^2 w_{n,k} \longrightarrow 0,
+$$
+so multiplying by $\sqrt{n}$ gives the stated limit.
 -/
-@[category research open, AMS 26 40 47]
+@[category research solved, AMS 26 40 47,
+  formal_proof using lean4 at "https://github.com/KitaKen1/bezier-bernstein-voronovskaja-lean/blob/3f35c631d215b3841242275bf3ed2c59ea153a2d/Voronovskaja.lean"]
 theorem voronovskaja_theorem.bezier_bernstein_operators
     (α : ℝ) (hα_pos : 0 < α) (hα : α ≠ 1)
     (f : ℝ → ℝ) (x : ℝ) (hx : x ∈ I)
     (hf : ContDiffOn ℝ 2 f I) :
     Tendsto (fun n : ℕ => Real.sqrt n * (bezierBernstein n α f x - f x)) atTop
-      (𝓝 ((answer(sorry) : ℝ → (ℝ → ℝ) → ℝ → ℝ) α f x)) := by
+      (𝓝 ((answer(fun a g y => bezierBias a * Real.sqrt (y * (1 - y)) * iteratedDerivWithin 1 g I y) :
+        ℝ → (ℝ → ℝ) → ℝ → ℝ) α f x)) := by
   sorry
 
 /--
