@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -/
+module
 
-import FormalConjecturesUtil
+public import FormalConjecturesUtil
 
 /-!
 # Conjecture 1.74 (Minimal topological groups)
@@ -37,6 +38,8 @@ Tarski monsters exist by a theorem of Klyachko, Olshanskii and Osin.
   non-topologizable groups*, Topology Appl. 160 (2013), 2104–2120,
   [arXiv:1210.7895](https://arxiv.org/abs/1210.7895), Theorem 1.4.
 -/
+
+@[expose] public section
 
 namespace Kourovka.«1.74»
 

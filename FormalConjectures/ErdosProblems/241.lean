@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -/
+module
 
-import FormalConjecturesUtil
+public import FormalConjecturesUtil
 
 /-!
 # Erdős Problem 241
@@ -29,6 +30,8 @@ import FormalConjecturesUtil
 - [Wh24] White, Ethan Patrick, An optimal $L^2$ autoconvolution inequality. Canad. Math. Bull.
   67 (2024), 108-121. [doi:10.4153/S0008439523000565](https://doi.org/10.4153/S0008439523000565)
 -/
+
+@[expose] public section
 
 open Filter Finset
 open scoped Asymptotics

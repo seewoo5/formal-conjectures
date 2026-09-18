@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -/
+module
 
-import FormalConjecturesUtil
+public import FormalConjecturesUtil
 
 /-!
 # Erdős Problem 973
@@ -28,6 +29,8 @@ import FormalConjecturesUtil
   [arxiv/2607.22017](https://arxiv.org/abs/2607.22017)
 - [Tu84b] Turán, Paul, On a new method of analysis and its applications. (1984), xvi+584.
 -/
+
+@[expose] public section
 
 open Finset Filter
 

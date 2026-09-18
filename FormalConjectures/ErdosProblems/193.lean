@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -/
+module
 
-import FormalConjecturesUtil
+public import FormalConjecturesUtil
 
 /-!
 # Erdős Problem 193
@@ -28,6 +29,8 @@ References:
 - [CaKa26] Cambie, Stijn and Kalviainen, Erik, "An infinite small-step Z³-walk with no
   collinear triple." [arXiv:2609.01766](https://arxiv.org/abs/2609.01766).
 -/
+
+@[expose] public section
 
 open Set
 

@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -/
+module
 
-import FormalConjecturesUtil
+public import FormalConjecturesUtil
 
 /-!
 # Ben Green's Open Problem 35
@@ -45,6 +46,8 @@ supported on `[0,1]`, and has total integral `1`.
 The constants of [CS17], [MV10], [AE25] and [GGTW25] are stated for functions supported on
 $[-1/4, 1/4]$; rescaling to $[0, 1]$ halves them.
 -/
+
+@[expose] public section
 
 namespace Green35
 
