@@ -20,9 +20,9 @@ public import FormalConjecturesUtil
 /-!
 # Parities of partition numbers
 
-There are several conejectures on parities of partition numbers.
-The most famous conjecture is the Parkin-Shanks conjecture, which states that the natural density of `n`
-where the partition number `p(n)` is even (resp. odd) exists and equals `1/2`.
+There are several conjectures on parities of partition numbers. The most famous conjecture is the
+Parkin-Shanks conjecture, which states that the natural density of `n` where the partition number
+`p(n)` is even (resp. odd) exists and equals `1/2`.
 
 There are several related (weaker) results toward the conjecture. Kolberg showed that `p(n)` takes
 each parity infinitely often. Subbarao conjectured that every arithmetic progression `r (mod t)`
@@ -40,41 +40,20 @@ integer-valued polynomial that is eventually positive.
 * [Note on the parity of the partition function](https://doi.org/10.7146/math.scand.a-10584),
   O. Kolberg, Math. Scand. 7 (1959), 377–378.
 * Some remarks on the partition function, M. V. Subbarao, Amer. Math. Monthly 73 (1966), 851–854.
-* [The distribution of values of the partition function in residue classes](https://doi.org/10.1016/0022-247X(83)90194-4),
-  L. Mirsky, J. Math. Anal. Appl. 93 (1983), 593–598.
 * [Parity of the partition function in arithmetic progressions](https://doi.org/10.1515/crll.1996.472.1),
   K. Ono, J. Reine Angew. Math. 472 (1996), 1–15.
-* [On the parity of additive representation functions](https://doi.org/10.1006/jnth.1998.2288)
-  (with an appendix by J.-P. Serre), J.-L. Nicolas, I. Z. Ruzsa, A. Sárközy,
-  J. Number Theory 73 (1998), 292–317.
 * [Distribution of parity of the partition function in arithmetic progressions](https://doi.org/10.1016/S0019-3577(99)80014-7),
   S. Ahlgren, Indag. Math. (N.S.) 10 (1999), 173–181.
-* [Parity of the partition function in arithmetic progressions, II](https://doi.org/10.1112/S0024609301008438),
-  M. Boylan, K. Ono, Bull. London Math. Soc. 33 (2001), 558–564.
-* Valeurs impaires de la fonction de partition p(n), J.-L. Nicolas, Int. J. Number Theory 2 (2006),
-  469–487.
-* Parité des valeurs de la fonction de partition p(n) et anatomie des entiers, J.-L. Nicolas,
-  CRM Proc. Lecture Notes 46 (2008), 97–113.
 * [Parity of the partition function](https://doi.org/10.1016/j.aim.2010.02.023), K. Ono,
   Adv. Math. 225 (2010), 349–366.
 * [A proof of Subbarao's conjecture](https://doi.org/10.1515/CRELLE.2011.165), C.-S. Radu,
   J. Reine Angew. Math. 672 (2012), 161–175.
-* [Formes modulaires modulo 2: l'ordre de nilpotence des opérateurs de Hecke](https://doi.org/10.1016/j.crma.2012.03.013),
-  J.-L. Nicolas, J.-P. Serre, C. R. Math. Acad. Sci. Paris 350 (2012), 343–348.
 * [Parité des coefficients de formes modulaires](https://doi.org/10.1007/s11139-014-9645-9),
   J. Bellaïche, J.-L. Nicolas, Ramanujan J. 40 (2016), 1–44.
 * [Nonzero coefficients of half-integral weight modular forms mod ℓ](https://arxiv.org/abs/1704.07440),
   J. Bellaïche, B. Green, K. Soundararajan, Res. Math. Sci. 5 (2018), Paper No. 6.
-* [On the density of the odd values of the partition function](https://arxiv.org/abs/1511.05531),
-  S. D. Judge, W. J. Keith, F. Zanello, Ann. Comb. 22 (2018), 583–600.
-* [On the density of the odd values of the partition function, II](https://arxiv.org/abs/1710.10134),
-  S. D. Judge, F. Zanello, J. Number Theory 188 (2018), 357–370.
-* [A note on odd partition numbers](https://arxiv.org/abs/2401.00982), M. Griffin, K. Ono,
-  Arch. Math. (2024).
 * [Parity of the partition function in quadratic progressions](https://arxiv.org/abs/2509.09553)
   (with an appendix by Q.-Y. Zheng), K. Ono, A. Swaminathan, arXiv:2509.09553.
-  A Lean formalization of the appendix, conditional on the odd half of Theorem 1 of the paper,
-  is at [AxiomMath/PartitionZheng](https://github.com/AxiomMath/PartitionZheng).
 -/
 
 @[expose] public section
@@ -143,6 +122,13 @@ theorem bellaiche_nicolas.even_explicit : ∀ x : ℝ, 1 < x →
     0.069 * √x * x.log.log ≤ ({n : ℕ | n ≤ x ∧ Even (partitionNumber n)}.ncard : ℝ) := by
   sorry
 
+/-- The number of `n ≤ x` with `p(n)` odd is at least `0.037 √x / (log x)^(7/8)` for every `x > 1`.
+(Bellaïche–Nicolas) -/
+@[category research solved, AMS 11]
+theorem bellaiche_nicolas.odd_explicit : ∀ x : ℝ, 1 < x →
+    0.037 * √x / (x.log) ^ (7 / 8 : ℝ) ≤ ({n : ℕ | n ≤ x ∧ Odd (partitionNumber n)}.ncard : ℝ) := by
+  sorry
+
 /-- The number of `n ≤ X` with `p(n)` odd is `≫ √X / log log X`.
 (Bellaïche–Green–Soundararajan) -/
 @[category research solved, AMS 11]
@@ -162,11 +148,12 @@ theorem ono_swaminathan.quadratic : ∀ D : ℕ, 1 < D → Squarefree D → D % 
 
 /-- The odd half of Theorem 1 of Ono–Swaminathan, with its effective bound: for square-free `D > 1`
 with `D ≡ 23 (mod 24)` there is an `m` coprime to `6` with `m ≤ 12 h(-D) + 2` such that
-`p((D m² + 1) / 24)` is odd, where `h(-D)` is the class number of `ℚ(√-D)`. The irreducibility of
-`X ^ 2 + D` over `ℚ`, assumed here so that `AdjoinRoot` is a number field, holds for all `D > 0`. -/
+`p((D m² + 1) / 24)` is odd, where `h(-D)` is the class number of `ℚ(√-D)`. Here `ℚ(√-D)` is
+`AdjoinRoot (X ^ 2 + D)`, a number field since `X ^ 2 + D` is irreducible over `ℚ` for `D > 0`. -/
 @[category research solved, AMS 11]
-theorem ono_swaminathan.odd_bound (D : ℕ) (hD : 1 < D) (hsq : Squarefree D) (h23 : D % 24 = 23)
-    [Fact (Irreducible (X ^ 2 + C (D : ℚ)))] :
+theorem ono_swaminathan.odd_bound (D : ℕ) (hD : 1 < D) (hsq : Squarefree D) (h23 : D % 24 = 23) :
+    haveI : Fact (Irreducible (X ^ 2 + C (D : ℚ))) :=
+      ⟨irreducible_X_sq_add_C_of_pos (Nat.cast_pos.2 (by lia))⟩
     ∃ m : ℕ, m.Coprime 6 ∧
       m ≤ 12 * NumberField.classNumber (AdjoinRoot (X ^ 2 + C (D : ℚ))) + 2 ∧
       Odd (partitionNumber ((D * m ^ 2 + 1) / 24)) := by
