@@ -17,27 +17,28 @@ module
 
 public import FormalConjecturesUtil
 
-
 /-!
-# No powers as partition numbers
+# Parkin-Shanks Conjecture
 
-There are no partition numbers $a(k)$ of the form $x^m$, with $x,m$ integers $>1$.
+The Parkin-Shanks conjecture states that the natural density of `n` where the partition number `p(n)`
+is even (resp. odd) exists and equal to `1/2`.
 
-*Reference:* [A41](https://oeis.org/A41)
+*References:*
+* [On the distribution of parity in the partition function](https://www.jstor.org/stable/2003251)
+  T. R. Parkin and D. Shanks, Math. Comp. 21 (1967), 466–480
 -/
 
 @[expose] public section
 
-namespace OeisA41
+namespace ParkinShanks
 
-open Nat
+open Nat Set Filter Topology
 
-/--
-There are no partition numbers $a(k)$ of the form $x^m$, with $x,m$ integers $>1$.
-See comment by Zhi-Wei Sun (Dec 02 2013).
--/
+/-- The natural density of `n` where the partition number `p(n)` is even (resp. odd) exists and equal to `1/2`-/
 @[category research open, AMS 11]
-theorem noPowerPartitionNumber : answer(sorry) ↔ ∀ k, ¬IsPerfectPower (partitionNumber k) := by
+theorem parkin_shanks :
+    {n : ℕ | Even (partitionNumber n)}.HasDensity (1 / 2) ∧
+    {n : ℕ | Odd (partitionNumber n)}.HasDensity (1 / 2) := by
   sorry
 
-end OeisA41
+end ParkinShanks
