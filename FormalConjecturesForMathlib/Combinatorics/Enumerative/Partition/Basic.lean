@@ -37,10 +37,10 @@ lemma Partition.partition_two_parts (p : Partition 2) : p.parts = {2} ∨ p.part
     have hs : ∀ {i}, i ∈ s → 0 < i := fun hi ↦ hpos (Multiset.mem_cons_of_mem hi)
     have ha : 0 < a := hpos (Multiset.mem_cons_self a s)
     rw [Multiset.sum_cons] at hsum
-    obtain rfl | rfl : a = 1 ∨ a = 2 := by omega
-    · obtain rfl : s = {1} := partition_one_parts ⟨s, hs, by omega⟩
+    obtain rfl | rfl : a = 1 ∨ a = 2 := by lia
+    · obtain rfl : s = {1} := partition_one_parts ⟨s, hs, by lia⟩
       exact .inr rfl
-    · obtain rfl : s = 0 := partition_zero_parts ⟨s, hs, by omega⟩
+    · obtain rfl : s = 0 := partition_zero_parts ⟨s, hs, by lia⟩
       exact .inl rfl
 
 theorem partitionNumber_two : partitionNumber 2 = 2 := by
