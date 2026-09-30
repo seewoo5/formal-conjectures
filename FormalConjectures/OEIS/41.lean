@@ -16,6 +16,7 @@ limitations under the License.
 module
 
 public import FormalConjecturesUtil
+meta import FormalConjecturesForMathlib.Combinatorics.Enumerative.Partition.Basic
 
 
 /-!
@@ -31,6 +32,15 @@ There are no partition numbers $a(k)$ of the form $x^m$, with $x,m$ integers $>1
 namespace OeisA41
 
 open Nat
+
+@[category test, AMS 11]
+theorem partitionNumber_3 : partitionNumber 3 = 3 := by decide +native
+
+@[category test, AMS 11]
+theorem partitionNumber_4 : partitionNumber 4 = 5 := by decide +native
+
+@[category test, AMS 11]
+theorem partitionNumber_5 : partitionNumber 5 = 7 := by decide +native
 
 /--
 There are no partition numbers $a(k)$ of the form $x^m$, with $x,m$ integers $>1$.
