@@ -122,10 +122,10 @@ theorem bellaiche_nicolas.even_explicit : ∀ x : ℝ, 1 < x →
     0.069 * √x * x.log.log ≤ ({n : ℕ | n ≤ x ∧ Even (partitionNumber n)}.ncard : ℝ) := by
   sorry
 
-/-- The number of `n ≤ x` with `p(n)` odd is at least `0.037 √x / (log x)^(7/8)` for every `x > 1`.
+/-- The number of `n ≤ x` with `p(n)` odd is at least `0.037 √x / (log x)^(7/8)` for every `x ≥ 2`.
 (Bellaïche–Nicolas) -/
 @[category research solved, AMS 11]
-theorem bellaiche_nicolas.odd_explicit : ∀ x : ℝ, 1 < x →
+theorem bellaiche_nicolas.odd_explicit : ∀ x : ℝ, 2 ≤ x →
     0.037 * √x / (x.log) ^ (7 / 8 : ℝ) ≤ ({n : ℕ | n ≤ x ∧ Odd (partitionNumber n)}.ncard : ℝ) := by
   sorry
 
