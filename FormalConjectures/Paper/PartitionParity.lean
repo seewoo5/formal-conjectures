@@ -41,7 +41,7 @@ integer-valued polynomial that is eventually positive.
   O. Kolberg, Math. Scand. 7 (1959), 377–378.
 * Some remarks on the partition function, M. V. Subbarao, Amer. Math. Monthly 73 (1966), 851–854.
 * [Parity of the partition function in arithmetic progressions](https://doi.org/10.1515/crll.1996.472.1),
-  K. Ono, J. Reine Angew. Math. 472 (1996), 1–15.
+  K. Ono, J. Reine Angew. Math. 472 (1996), 1–16.
 * [Distribution of parity of the partition function in arithmetic progressions](https://doi.org/10.1016/S0019-3577(99)80014-7),
   S. Ahlgren, Indag. Math. (N.S.) 10 (1999), 173–181.
 * [Parity of the partition function](https://doi.org/10.1016/j.aim.2010.02.023), K. Ono,
@@ -54,6 +54,7 @@ integer-valued polynomial that is eventually positive.
   J. Bellaïche, B. Green, K. Soundararajan, Res. Math. Sci. 5 (2018), Paper No. 6.
 * [Parity of the partition function in quadratic progressions](https://arxiv.org/abs/2509.09553)
   (with an appendix by Q.-Y. Zheng), K. Ono, A. Swaminathan, arXiv:2509.09553.
+* [Cox] D. A. Cox, Primes of the Form $x^2 + ny^2$, 2nd ed., Wiley, 2013.
 -/
 
 @[expose] public section
@@ -159,12 +160,30 @@ theorem ono_swaminathan.odd_bound (D : ℕ) (hD : 1 < D) (hsq : Squarefree D) (h
       Odd (partitionNumber ((D * m ^ 2 + 1) / 24)) := by
   sorry
 
+/-- `[a, b, c]` is a reduced primitive positive-definite binary quadratic form of discriminant
+`-D`: `b² - 4ac = -D`, `|b| ≤ a ≤ c`, `gcd(a, b, c) = 1`, and `b ≥ 0` if `|b| = a` or `a = c`. -/
+def IsReducedForm (D : ℕ) (a b c : ℤ) : Prop :=
+  b ^ 2 - 4 * a * c = -D ∧ |b| ≤ a ∧ a ≤ c ∧ Int.gcd (Int.gcd a b) c = 1 ∧
+    (|b| = a ∨ a = c → 0 ≤ b)
+
+/-- For square-free `D ≡ 3 (mod 4)`, the discriminant `-D` is fundamental and the class number of
+`ℚ(√-D)` equals the number of reduced primitive positive-definite binary quadratic forms of
+discriminant `-D` [Cox, Theorem 2.8].
+This identification is used in Zheng's appendix to Ono–Swaminathan. -/
+@[category textbook, AMS 11]
+theorem classNumber_eq_ncard_reducedForms (D : ℕ) (hsq : Squarefree D) (h3 : D % 4 = 3) :
+    haveI : Fact (Irreducible (X ^ 2 + C (D : ℚ))) :=
+      ⟨irreducible_X_sq_add_C_of_pos (Nat.cast_pos.2 (by lia))⟩
+    NumberField.classNumber (AdjoinRoot (X ^ 2 + C (D : ℚ))) =
+      {⟨a, b, c⟩ : ℤ × ℤ × ℤ | IsReducedForm D a b c}.ncard := by
+  sorry
+
 /-- Zheng's explicit lower bound: `liminf_{X → ∞} N_odd(X) / √X ≥ 243 / (64 √6 π⁵)`, where
-`N_odd(X)` is the number of `n ≤ X` with `p(n)` odd. -/
+`N_odd(X)` is the number of `n ≤ X` with `p(n)` odd [Ono-Swaminathan, Appendix A, Corollary 2]. -/
 @[category research solved, AMS 11,
   conditional formal_proof using lean4 at
-    "https://github.com/AxiomMath/PartitionZheng/blob/9bfb4326c4ea1e00016a842d7cc145e5c4e0684a/Challenge/Basic.lean#L79"
-    assuming ono_swaminathan.odd_bound]
+    "https://github.com/AxiomMath/PartitionZheng/blob/9bfb4326c4ea1e00016a842d7cc145e5c4e0684a/Solution/Basic.lean#L17"
+    assuming ono_swaminathan.odd_bound classNumber_eq_ncard_reducedForms]
 theorem zheng.liminf :
     ((243 / (64 * √6 * π ^ 5) : ℝ) : EReal) ≤
       liminf (fun X : ℝ ↦
@@ -178,8 +197,9 @@ theorem zheng.odd :
       fun X : ℝ ↦ ({n : ℕ | n ≤ X ∧ Odd (partitionNumber n)}.ncard : ℝ) := by
   sorry
 
-/-- Ono's conjecture: If `g` is a nonconstant integer-valued polynomial that is eventually
-positive, then `p(g(n))` is even for infinitely many `n` and odd for infinitely many `n`. -/
+/-- Ono's conjecture, as stated in Section 1 of Ono–Swaminathan: if `g` is a nonconstant
+integer-valued polynomial that is eventually positive, then `p(g(n))` is even for infinitely many
+`n` and odd for infinitely many `n`. -/
 @[category research open, AMS 11]
 theorem ono.polynomial (g : ℚ[X]) (hg : 0 < g.natDegree)
     (hint : ∀ n : ℕ, ∃ k : ℤ, g.eval (n : ℚ) = k)
