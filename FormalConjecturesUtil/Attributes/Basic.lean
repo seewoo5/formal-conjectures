@@ -16,6 +16,7 @@ limitations under the License.
 module
 
 public meta import FormalConjecturesUtil.Attributes.AMS
+public meta import FormalConjecturesUtil.Answer
 
 import Qq
 
@@ -104,6 +105,44 @@ theorem a_conditionally_proved_problem : ... := by
 
 @[category test]
 theorem a_test_to_sanity_check_some_definition : ¬ FermatLastTheoremWith 1 := by
+  sorry
+```
+
+## The Question Attribute
+
+### Overview
+Records that the source asks a question rather than makes a claim. A conjecture is a claim:
+its author expects it to be true. A question leaves the answer open. There are two kinds:
+
+- A yes-or-no question ("Is it true that...?", "Does...?", "Are there...?"). The Lean
+  statement is the proposition the question asks about. Once the question is answered, the
+  statement is the one that holds: unchanged if the answer is yes, negated with `¬` if the
+  answer is no. Not a question: a conjecture that is merely phrased as one. "Is every even
+  integer greater than 2 the sum of two primes?" is Goldbach's conjecture, a claim.
+- A question that asks for a value ("What is...?", "How large can...be?"). The Lean statement
+  marks the unknown with `answer(sorry)`, see `FormalConjecturesUtil.Answer`. Not a question:
+  a conjectured value. "What is $R(5,5)$?" is a question, stated as `R(5, 5) = answer(sorry)`;
+  "$R(5,5) = 43$" is a claim, stated as `R(5, 5) = 43`.
+
+The attribute records the kind itself: a statement containing a non-`Prop` `answer(...)` is a
+value question, any other is a yes-or-no question. Both are written `@[question]`.
+
+The attribute is independent of `category`, but it only makes sense on a `research open` or
+`research solved` problem: a textbook exercise, a `test`, or an `API` statement is not a
+question anyone left open.
+
+### Usage examples
+```
+/-- Is every aliquot sequence bounded? Catalan and Dickson conjectured that it is;
+Guy and Selfridge conjectured that it is not. -/
+@[category research open, question, AMS 11]
+theorem catalan_dickson :
+    ∀ n, ∃ B, ∀ k, (fun m => ∑ d ∈ m.properDivisors, d)^[k] n ≤ B := by
+  sorry
+
+/-- What is the chromatic number of the plane? -/
+@[category research open, question, AMS 5]
+theorem hadwiger_nelson : UnitDistancePlaneGraph.chromaticNumber = answer(sorry) := by
   sorry
 ```
 
@@ -205,6 +244,14 @@ inductive Category
   | API
   deriving Inhabited, BEq, Hashable, ToExpr
 
+instance : ToString Category where
+  toString
+    | .textbook => "textbook"
+    | .research .open => "research open"
+    | .research .solved => "research solved"
+    | .test => "test"
+    | .API => "API"
+
 syntax CategorySyntax := &"textbook"
     <|> (&"research" problemStatus) <|> &"test" <|> &"API"
 
@@ -281,6 +328,50 @@ def addSubjectEntry {m : Type → Type} [MonadEnv m] (name : Name)
   modifyEnv (subjectExt.addEntry ·
     { declName := name, subjects := subjects, informal := informal })
 
+/-- The kind of question a source asks. -/
+inductive QuestionKind
+  /-- A yes-or-no question. The statement is the proposition asked about. -/
+  | yesNo
+  /-- A question asking for a value. The statement marks the unknown with `answer(sorry)`. -/
+  | value
+  deriving Inhabited, BEq, Hashable, Repr, ToExpr
+
+instance : ToString QuestionKind where
+  toString
+    | .yesNo => "yes_no"
+    | .value => "value"
+
+/-- A tag recording that a declaration is posed as a question by its source. -/
+structure QuestionTag where
+  /-- The name of the declaration with the given tag. -/
+  declName : Name
+  /-- The kind of question. -/
+  kind : QuestionKind
+  deriving Inhabited, BEq, Hashable, ToExpr
+
+/-- Defines the `questionExt` extension recording which declarations are posed as
+questions by their source, keyed by declaration name. -/
+initialize questionExt :
+    SimplePersistentEnvExtension QuestionTag (Std.HashMap Name QuestionKind) ←
+  registerSimplePersistentEnvExtension {
+    addImportedFn := fun as =>
+      as.foldl (fun m tags => tags.foldl (fun m t => m.insert t.declName t.kind) m) {}
+    addEntryFn := fun m t => m.insert t.declName t.kind
+  }
+
+def addQuestionEntry {m : Type → Type} [MonadEnv m] (declName : Name) (kind : QuestionKind) :
+    m Unit :=
+  modifyEnv (questionExt.addEntry · { declName := declName, kind := kind })
+
+/-- Fails unless `cat` is a research category. A question is something a source asked and left
+open at some point, so it belongs to a research problem, not to a textbook exercise, a test, or
+an API statement. The `question` and `category` attributes both call this, so the check runs
+whichever of the two is applied second, and also for `attribute [question] foo`. -/
+def checkQuestionCategory (declName : Name) (cat : Category) : CoreM Unit :=
+  unless cat matches .research _ do
+    throwError "the `question` attribute belongs to a `research open` or `research solved` \
+      problem, but '{declName}' is categorised as `{cat}`"
+
 /-- Convert from a syntax node to a term of type `Category` and annotate the syntax
 with the corresponding name's docstring. -/
 def Syntax.toCategory (stx : TSyntax ``CategorySyntax) : CoreM Category := do
@@ -354,6 +445,8 @@ initialize Lean.registerBuiltinAttribute {
     -- theorem: attributes run before the proof term exists, since theorem bodies elaborate
     -- asynchronously, so `value?` was always `none`. It is now `CategoryLinter`'s
     -- `checkNotOpenIfSorryFree`, which runs once the command has finished.
+    if (questionExt.getState (← getEnv)).contains decl then
+      checkQuestionCategory decl status
     addCategoryEntry decl status oldDoc
   applicationTime := .afterTypeChecking
 }
@@ -480,6 +573,39 @@ initialize Lean.registerBuiltinAttribute {
     addSubjectEntry decl subjects.toList oldDoc
 }
 
+/-- The kind of question a statement of type `type` asks: a value question if it contains a
+non-`Prop` `answer(...)`, a yes-or-no question otherwise. -/
+def questionKindOfType (type : Expr) : MetaM QuestionKind := do
+  let hasValueAnswer ← IO.mkRef false
+  Google.forEachAnswer type fun ans => do
+    unless ← Meta.isProp ans do hasValueAnswer.set true
+  return if ← hasValueAnswer.get then .value else .yesNo
+
+syntax (name := Question_attr) &"question" : attr
+
+/-- Records that the source asks a question rather than makes a claim.
+
+Usage: `@[question]`, together with a `research` category. A statement containing a non-`Prop`
+`answer(...)` is recorded as a value question, any other as a yes-or-no question. For a
+yes-or-no question the statement is the proposition asked about; once answered, it is the one
+that holds: unchanged for a yes, negated with `¬` for a no. -/
+initialize Lean.registerBuiltinAttribute {
+  name := `Question_attr
+  descr := "Annotation that a statement is posed as a question."
+  add decl _stx _attrKind := do
+    -- Inside a `module`, a theorem is still registered as an axiom when attributes run, so
+    -- the check is on the type rather than on the kind of the constant.
+    let some info := (← getEnv).find? decl
+      | throwError "unknown declaration '{decl}'"
+    unless ← Meta.MetaM.run' (Meta.isProp info.type) do
+      throwError "the `question` attribute only applies to theorems, \
+        but the type of '{decl}' is not a proposition"
+    if let some tag := (categoryExt.getState (← getEnv)).toArray.find? (·.declName == decl) then
+      checkQuestionCategory decl tag.category
+    addQuestionEntry decl (← Meta.MetaM.run' (questionKindOfType info.type))
+  applicationTime := .afterTypeChecking
+}
+
 /-- A tag recording that a definition formalises an entry of the
 optimization problems database at <https://teorth.github.io/optimizationproblems/>. -/
 structure OptimizationConstantTag where
@@ -576,6 +702,14 @@ def getCategoryStats : m (Category → Nat) := do
 
 def getSubjectTags : m (Array SubjectTag) := do
   return subjectExt.getState (← MonadEnv.getEnv) |>.toArray
+
+/-- The declarations tagged `@[question]`, with the kind of question each asks. -/
+def getQuestionTags : m (Array QuestionTag) := do
+  return questionExt.getState (← MonadEnv.getEnv) |>.toArray.map fun (n, k) => ⟨n, k⟩
+
+/-- The kind of question a given declaration asks, if it is tagged `@[question]`. -/
+def getQuestionKind? (declName : Name) : m (Option QuestionKind) := do
+  return (questionExt.getState (← MonadEnv.getEnv))[declName]?
 
 def getFormalProofTags : m (Array FormalProofTag) := do
   return formalProofExt.getState (← MonadEnv.getEnv) |>.toArray
