@@ -48,7 +48,7 @@ This is true: a formal proof in Lean 4 was produced by the LEAP prover agent [Ku
 this one (see [erdosproblems.com/forum/thread/289/proof-claims](https://www.erdosproblems.com/forum/thread/289/proof-claims));
 this formalization follows an independent, different proof path.
 -/
-@[category research solved, AMS 11,
+@[category research solved, question, AMS 11,
   formal_proof using formal_conjectures at
     "https://github.com/lfsong-google/formal-conjectures/blob/ff33e501bb78a90ae4703e22e052f8bb38e10146/FormalConjectures/ErdosProblems/289.lean#L9514"]
 theorem erdos_289 : answer(True) ↔

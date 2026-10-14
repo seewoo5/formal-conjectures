@@ -40,7 +40,7 @@ def FactorialSums : Set ℕ :=
 /--
 For each $k \geq 2$, does the set $A = \left\{ \sum_{n\in S}n! : S\subset \mathbb{N}_{\geq 1}\text{ finite}\right\}$ of all finite sums of distinct factorials contain only finitely many $k$-th powers?
 -/
-@[category research open, AMS 11]
+@[category research open, question, AMS 11]
 theorem erdos_1108.parts.i : answer(sorry) ↔ ∀ k ≥ 2,
     Set.Finite { a | a ∈ FactorialSums ∧ ∃ m : ℕ, m ^ k = a } := by
   sorry
@@ -49,7 +49,7 @@ theorem erdos_1108.parts.i : answer(sorry) ↔ ∀ k ≥ 2,
 Does the set $A = \left\{ \sum_{n\in S}n! : S\subset \mathbb{N}_{\geq 1}\text{ finite}\right\}$ of all finite sums of distinct factorials contain only finitely many powerful numbers
 (`Nat.Powerful`)?
 -/
-@[category research open, AMS 11]
+@[category research open, question, AMS 11]
 theorem erdos_1108.parts.ii :
      answer(sorry) ↔ {a ∈ FactorialSums | a.Powerful}.Finite := by
   sorry

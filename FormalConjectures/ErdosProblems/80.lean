@@ -82,7 +82,7 @@ different: $f_c(n) \geq n/6$, see [erdosproblems.com/80](https://www.erdosproble
 The bound $c < 1/2$ is what makes the hypothesis satisfiable: a simple graph on $n$ vertices
 has at most $n(n-1)/2$ edges, so no graph has $cn^2$ of them once $c \geq 1/2$.
 -/
-@[category research solved, AMS 5]
+@[category research solved, question, AMS 5]
 theorem erdos_80.parts.i :
     answer(False) ↔ ∀ c : ℝ, 0 < c → c < 1 / 2 →
       ∃ ε > (0 : ℝ), ∀ᶠ n : ℕ in atTop, (n : ℝ) ^ ε < f c n := by
@@ -93,7 +93,7 @@ The weaker question from the same problem: is $f_c(n) \gg \log n$?
 
 Same feasibility bound on `c` as above.
 -/
-@[category research open, AMS 5]
+@[category research open, question, AMS 5]
 theorem erdos_80.parts.ii :
     answer(sorry) ↔ ∀ c : ℝ, 0 < c → c < 1 / 2 →
       (fun n : ℕ ↦ (f c n : ℝ)) ≫ (fun n : ℕ ↦ Real.log n) := by

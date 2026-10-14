@@ -45,7 +45,7 @@ def IsBarrier (f : ℕ → ℝ) (n : ℕ) : Prop :=
   ∀ m < n, (m : ℝ) + f m ≤ n
 
 /-- Are there infinitely many barriers for `ω`? -/
-@[category research open, AMS 11]
+@[category research open, question, AMS 11]
 theorem erdos_413.parts.i :
     answer(sorry) ↔ { n | IsBarrier (fun m => ω m) n }.Infinite := by
   sorry
@@ -71,7 +71,7 @@ theorem erdos_413.variants.hasPosDensity_barrier_expProd :
   sorry
 
 /-- Erdős believed there should be infinitely many barriers for `Ω`, the total prime multiplicity. -/
-@[category research open, AMS 11]
+@[category research open, question, AMS 11]
 theorem erdos_413.variants.bigOmega :
     answer(sorry) ↔ { n | IsBarrier (fun m => Ω m) n }.Infinite := by
   sorry
@@ -84,7 +84,7 @@ theorem erdos_413.variants.bigOmega_largest_barrier_lt_100k :
 
 /-- Does there exist some $\epsilon > 0$ such that there are infinitely many
 $\epsilon$-barriers for $\omega$? Lau [La26, Theorem 1.3] gives a positive answer. -/
-@[category research solved, AMS 11]
+@[category research solved, question, AMS 11]
 theorem erdos_413.parts.ii :
     answer(True) ↔
         (∃ ε > (0 : ℝ), { n | IsBarrier (fun n => ε * ω n) n }.Infinite) := by

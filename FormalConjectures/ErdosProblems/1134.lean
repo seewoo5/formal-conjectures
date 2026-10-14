@@ -65,7 +65,7 @@ $$6^{-\tau}+\sum_{k\geq 0}(3\cdot 2^k)^{-\tau}=1.$$
 Their proof is given in [La16]. This problem is repeated by Guy [Gu83b] in an article called
 'Don't Try to Solve These Problems'. This is Problem E36 in Guy's collection [Gu04].
 -/
-@[category research solved, AMS 11, formal_proof using lean4 at
+@[category research solved, question, AMS 11, formal_proof using lean4 at
   "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos1134.lean#L79"]
 theorem erdos_1134 : answer(False) ↔ 0 < A.lowerDensity := by
   sorry
@@ -87,7 +87,7 @@ has positive density.
 The answer is negative: Kenta Kitamura (KitaKen1 on GitHub) has given a Lean proof
 ([erdos-1134-lean](https://github.com/KitaKen1/erdos-1134-lean)) that $A$ has natural density $0$.
 -/
-@[category research solved, AMS 11, formal_proof using lean4 at
+@[category research solved, question, AMS 11, formal_proof using lean4 at
   "https://github.com/KitaKen1/erdos-1134-lean/blob/57042c7e43ae71cd7008e461cf3b9d81b8d8a20f/lean/Erdos1134KlarnerFC.lean#L2110-L2113"]
 theorem erdos_1134.variants.klarner : answer(False) ↔
     0 < (⋂₀ {S : Set ℕ | 0 ∈ S ∧

@@ -66,7 +66,7 @@ This is false. It was disproved by an internal OpenAI model in September 2026 [O
 linked Lean proof, which gives a bipartite $H$ with $35$ vertices and $66$ edges and a finite
 host $G$ with $t(H, G) < t(K_2, G)^{66}$.
 -/
-@[category research solved, AMS 5, formal_proof using lean4 at
+@[category research solved, question, AMS 5, formal_proof using lean4 at
   "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/OAI/Combinatorics/Sidorenko/RandomHost.lean#L319"]
 theorem sidorenko_conjecture : answer(False) ↔
     ∀ {V W : Type} [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W] [Nonempty W]
@@ -88,7 +88,7 @@ the graphon form: the step graphon of the finite host graph has the same homomor
 densities and the same edge density as the host. This reduction is not part of the linked Lean
 proof of the finite form.
 -/
-@[category research solved, AMS 5]
+@[category research solved, question, AMS 5]
 theorem sidorenko_conjecture_graphon : answer(False) ↔
     ∀ {V : Type*} [Fintype V] [DecidableEq V] (H : SimpleGraph V) [DecidableRel H.Adj],
       H.IsBipartite →
@@ -146,7 +146,7 @@ for any finite tournament $G$, the homomorphism density satisfies:
 $$ t_{\vec{T}}(G) \le 2^{-e(T)} $$
 where $e(T)$ is the total number of edges in $T$.
 -/
-@[category research open, AMS 5]
+@[category research open, question, AMS 5]
 theorem tournament_anti_sidorenko_trees_conjecture : answer(sorry) ↔
     ∀ {V : Type*} [Fintype V] [DecidableEq V] (T : SimpleGraph V) [DecidableRel T.Adj],
       T.IsTree →
@@ -167,7 +167,7 @@ for every tournamenton $W : [0, 1]^2 \to [0, 1]$, the homomorphism density satis
 $$ t_{\vec{T}}(W) \le 2^{-e(T)} $$
 where $e(T)$ is the total number of edges in $T$.
 -/
-@[category research open, AMS 5]
+@[category research open, question, AMS 5]
 theorem tournament_anti_sidorenko_trees_conjecture_tournamenton : answer(sorry) ↔
     ∀ {V : Type*} [Fintype V] [DecidableEq V] (T : SimpleGraph V) [DecidableRel T.Adj],
       T.IsTree →

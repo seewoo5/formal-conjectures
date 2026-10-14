@@ -37,7 +37,7 @@ $$\sup_{x \in \mathbb R^n}f(x) = \sup_{x\in \mathbb R^n} f(x+\nabla f(x))$$?
 
 Answer: No. A counterexample in $\mathbb R^2$ is recorded in the linked formal proof.
 -/
-@[category research solved, AMS 26,
+@[category research solved, question, AMS 26,
   formal_proof using formal_conjectures at
     "https://github.com/google-deepmind/formal-conjectures/blob/fc20c0b55eab6fc26e2bb5b24fb3005303a0910b/FormalConjectures/Mathoverflow/347178.lean#L670"]
 theorem mathoverflow_347178 :
@@ -52,7 +52,7 @@ $\sup_{x \in \mathbb R^n}f(x)$ and $\sup_{x\in \mathbb R^n} f(x+\nabla f(x))$ eq
 
 Answer: No. The same counterexample is recorded in the linked formal proof.
 -/
-@[category research solved, AMS 26,
+@[category research solved, question, AMS 26,
   formal_proof using formal_conjectures at
     "https://github.com/google-deepmind/formal-conjectures/blob/fc20c0b55eab6fc26e2bb5b24fb3005303a0910b/FormalConjectures/Mathoverflow/347178.lean#L690"]
 theorem mathoverflow_347178.variants.bounded_iff :
@@ -67,7 +67,7 @@ hold when both suprema are finite?
 
 Answer: Yes. Upper boundedness of $f$ alone suffices.
 -/
-@[category research solved, AMS 26,
+@[category research solved, question, AMS 26,
   formal_proof using lean4 at
     "https://github.com/inozemtsev/gradient-supremum/blob/56743ea06dd2953e02274841c16e0f56927b5a44/GradientSupremum/Mathoverflow347178.lean#L30"]
 theorem mathoverflow_347178.variants.bounded_only :
