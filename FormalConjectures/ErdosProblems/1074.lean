@@ -60,13 +60,15 @@ exist? -/
 theorem erdos_1074.parts.i : ∃ c, EHSNumbers.HasDensity c := by
   sorry
 
+def erdos_1074.parts.ii.answer : ℝ := sorry
+
 /-- Let $S$ be the set of all $m\geq 1$ such that there exists a prime $p\not\equiv 1\pmod{m}$ such
 that $m! + 1 \equiv 0\pmod{p}$. What is
 $$
   \lim\frac{|S\cap[1, x]|}{x}?
 $$ -/
 @[category research open, question value, AMS 11]
-theorem erdos_1074.parts.ii : EHSNumbers.HasDensity answer(sorry) := by
+theorem erdos_1074.parts.ii : EHSNumbers.HasDensity erdos_1074.parts.ii.answer := by
   sorry
 
 /-- Similarly, if $P$ is the set of all primes $p$ such that there exists an $m$ with
@@ -79,6 +81,8 @@ exist? -/
 theorem erdos_1074.parts.iii : ∃ c, PillaiPrimes.HasDensity c {p | p.Prime} := by
   sorry
 
+def erdos_1074.parts.iv.answer : ℝ := sorry
+
 /-- Similarly, if $P$ is the set of all primes $p$ such that there exists an $m$ with
 $p\not\equiv 1\pmod{m}$ such that $m! + 1 \equiv 0\pmod{p}$, then what is
 $$
@@ -86,7 +90,7 @@ $$
 $$ -/
 @[category research open, question value, AMS 11]
 theorem erdos_1074.parts.iv :
-    PillaiPrimes.HasDensity answer(sorry) {p | p.Prime} := by
+    PillaiPrimes.HasDensity erdos_1074.parts.iv.answer {p | p.Prime} := by
   sorry
 
 /-- Pillai [Pi30] raised the question of whether there exist any primes in $P$. This was answered

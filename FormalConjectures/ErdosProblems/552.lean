@@ -33,6 +33,8 @@ public import FormalConjecturesUtil
 
 namespace Erdos552
 
+def erdos_552.parts.i.answer : ℕ := sorry
+
 /--
 Determine the Ramsey number
 $$R(C_4, S_n),$$
@@ -47,7 +49,7 @@ theorem erdos_552.parts.i :
     ∀ (n : ℕ),
       SimpleGraph.graphRamsey (SimpleGraph.cycleGraph 4)
         (completeBipartiteGraph (Fin 1) (Fin n)) =
-        answer(sorry) := by
+        erdos_552.parts.i.answer := by
   sorry
 
 /--

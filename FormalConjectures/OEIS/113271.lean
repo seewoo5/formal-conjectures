@@ -66,6 +66,8 @@ theorem a_5_not_prime : ¬ (a 5).Prime := by
   rw [a_5]
   norm_num
 
+def conjecture1.answer : ℕ := sorry
+
 /--
 The first prime terms in this (always odd) sequence are $a(1) = 3$, $a(3) = 41$, and
 $a(4) = 593$. What is the next prime?
@@ -76,7 +78,7 @@ search for the next prime must begin after index `4`, not after index `5`.
 -/
 @[category research open, question value, AMS 11]
 theorem conjecture1 :
-  answer(sorry) = a (sInf {n : ℕ | 4 < n ∧ (a n).Prime}) := by
+  conjecture1.answer = a (sInf {n : ℕ | 4 < n ∧ (a n).Prime}) := by
   sorry
 
 end OeisA113271

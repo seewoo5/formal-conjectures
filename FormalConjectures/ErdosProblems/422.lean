@@ -87,13 +87,15 @@ theorem erdos_422.variants.surjective :
     ∀ f : ℕ+ → ℕ+, IsHofstadterQ f → f.Surjective := by
   sorry
 
+def erdos_422.variants.growth_rate.answer : ℕ+ → ℝ := sorry
+
 /--
 How does $f$ grow?
 -/
 @[category research open, question value, AMS 11]
 theorem erdos_422.variants.growth_rate :
     ∀ f : ℕ+ → ℕ+, IsHofstadterQ f →
-    (fun n ↦ (f n : ℝ)) =O[atTop] (answer(sorry) : ℕ+ → ℝ) := by
+    (fun n ↦ (f n : ℝ)) =O[atTop] erdos_422.variants.growth_rate.answer := by
   sorry
 
 /--

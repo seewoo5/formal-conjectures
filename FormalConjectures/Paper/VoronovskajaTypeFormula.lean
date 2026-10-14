@@ -454,6 +454,9 @@ theorem voronovskaja_theorem.bernstein_operators
     (𝓝 ((1 / 2) * x * (1 - x) * f'')) := by
   sorry
 
+noncomputable def voronovskaja_theorem.bezier_bernstein_operators.answer : ℝ → (ℝ → ℝ) → ℝ → ℝ :=
+  fun a g y => bezierBias a * Real.sqrt (y * (1 - y)) * iteratedDerivWithin 1 g I y
+
 /--
 Voronovskaja-type formula for Bézier--Bernstein operators with shape parameter
 $\alpha > 0$, $\alpha \neq 1$.
@@ -496,7 +499,7 @@ theorem voronovskaja_theorem.bezier_bernstein_operators
     (f : ℝ → ℝ) (x : ℝ) (hx : x ∈ I)
     (hf : ContDiffOn ℝ 2 f I) :
     Tendsto (fun n : ℕ => Real.sqrt n * (bezierBernstein n α f x - f x)) atTop
-      (𝓝 ((answer(fun a g y => bezierBias a * Real.sqrt (y * (1 - y)) * iteratedDerivWithin 1 g I y) :
+      (𝓝 ((voronovskaja_theorem.bezier_bernstein_operators.answer :
         ℝ → (ℝ → ℝ) → ℝ → ℝ) α f x)) := by
   sorry
 
@@ -506,8 +509,7 @@ $\mu_\alpha\sqrt{x(1-x)}\,f'(x)$.
 -/
 @[category test, AMS 26 40 47]
 example (α : ℝ) (f : ℝ → ℝ) (x : ℝ) :
-    (answer(fun a g y => bezierBias a * Real.sqrt (y * (1 - y)) * iteratedDerivWithin 1 g I y) :
-        ℝ → (ℝ → ℝ) → ℝ → ℝ) α f x =
+    voronovskaja_theorem.bezier_bernstein_operators.answer α f x =
       bezierBias α * Real.sqrt (x * (1 - x)) * iteratedDerivWithin 1 f I x := by
   rfl
 

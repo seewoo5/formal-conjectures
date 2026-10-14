@@ -76,7 +76,8 @@ lemma isCuttable_iff_isSquare_of_linearIndependent
   exact ⟨fun hT ↦ ⟨hT.ne_zero, sorry⟩, fun hn ↦ .of_isSquare hn.1 hn.2⟩
 
 -- The complete classification is too involved to encode as the answer set here.
-set_option linter.style.category_answer false in
+def erdos_633.answer : Set (Triangle ℝ ℝ²) := sorry
+
 /--
 Which triangles can only be decomposed into a square number of congruent triangles?
 
@@ -85,7 +86,7 @@ number of congruent triangles, settling this problem. The classification is too 
 in the answer slot here, so the answer is left as `sorry` and the reference records the result.
 -/
 @[category research solved, question value, AMS 5 51]
-lemma erdos_633 : T ∈ (answer(sorry) : Set <| Triangle ℝ ℝ²) ↔
+lemma erdos_633 : T ∈ erdos_633.answer ↔
     ∀ n, IsCuttable n T → IsSquare n := sorry
 
 variable (n T) in

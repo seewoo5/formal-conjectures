@@ -30,6 +30,8 @@ namespace Erdos837
 
 open Filter Asymptotics
 
+def erdos_837.answer : Set ℝ := sorry
+
 /--
 Let $k\geq 2$ and $A_k\subseteq [0,1]$ be the set of $\alpha$ such that there exists some
 $\beta(\alpha)>\alpha$ with the property that, if $G_1,G_2,\ldots$ is a sequence of $k$-uniform
@@ -44,7 +46,7 @@ What is $A_3$?
 theorem erdos_837 :
     {α : ℝ | α ∈ Set.Icc 0 1 ∧ ∃ β : ℝ, α < β ∧
     Hypergraph.HasDensityJump 3 α β true ∧ ¬ Hypergraph.HasDensityJump 3 α β false}
-      = answer(sorry) := by
+      = erdos_837.answer := by
   sorry
 
 end Erdos837
