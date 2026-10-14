@@ -53,12 +53,11 @@ once $n$ is large, so it decays subexponentially and no such $C$ exists. See
 -/
 @[category research solved, question, AMS 11, formal_proof using lean4 at "https://github.com/linrock/math-proofs/blob/1571a487465fb6a87f92dcc46f1bd71b0846c413/erdos-973/Solution.lean#L47"]
 theorem erdos_973 :
-    answer(False) ↔
-      ∃ C : ℝ, C > 1 ∧
-        ∀ n : ℕ, n ≥ 2 → ∃ z : ℕ → ℂ,
-          z 1 = 1 ∧
-          (∀ i ∈ Icc 1 n, 1 ≤ ‖z i‖) ∧
-          (∀ k ∈ Icc 2 (n + 1), ‖∑ i ∈ Icc 1 n, z i ^ k‖ < C ^ (-(n : ℝ))) := by
+    ¬ ∃ C : ℝ, C > 1 ∧
+      ∀ n : ℕ, n ≥ 2 → ∃ z : ℕ → ℂ,
+        z 1 = 1 ∧
+        (∀ i ∈ Icc 1 n, 1 ≤ ‖z i‖) ∧
+        (∀ k ∈ Icc 2 (n + 1), ‖∑ i ∈ Icc 1 n, z i ^ k‖ < C ^ (-(n : ℝ))) := by
   sorry
 
 /--

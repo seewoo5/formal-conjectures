@@ -128,7 +128,7 @@ every graph satisfying this local deletion bound has finite chromatic number.
 -/
 @[category research solved, question, AMS 5, formal_proof using lean4 at
   "https://github.com/tadamcz/erdos74/blob/e127ee587c7c91267eecdb3569443d2b0ad64b52/Erdos74/Resolutions/Erdos74_118usd_22h.lean#L2511"]
-theorem erdos_74 : answer(False) ↔ ∀ f : ℕ → ℕ, Tendsto f atTop atTop →
+theorem erdos_74 : ¬ ∀ f : ℕ → ℕ, Tendsto f atTop atTop →
     (∃ (V : Type u) (G : SimpleGraph V), G.chromaticNumber = ⊤ ∧
     ∀ n, G.maxSubgraphEdgeDistToBipartite n ≤ f n) := by
   sorry
@@ -138,7 +138,7 @@ Is there a graph of infinite chromatic number such that every finite subgraph on
 vertices can be made bipartite by deleting at most $\sqrt{n}$ edges?
 -/
 @[category research open, question, AMS 5]
-theorem erdos_74.variants.sqrt : answer(sorry) ↔
+theorem erdos_74.variants.sqrt :
     ∃ (V : Type u) (G : SimpleGraph V), G.chromaticNumber = ⊤ ∧
     ∀ n, G.maxSubgraphEdgeDistToBipartite n ≤ (n : ℝ).sqrt := by
   sorry

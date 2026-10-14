@@ -49,7 +49,7 @@ $\binom{n}{k}$ has a divisor in $(cn, n]$?
 Bui, Naprienko, Pratt, and Zaharescu [BNPZ26] answered this negatively.
 -/
 @[category research solved, question, AMS 11]
-theorem erdos_387 : answer(False) ↔ ∃ c : ℝ, 0 < c ∧ ∀ n k : ℕ, 1 ≤ k → k < n →
+theorem erdos_387 : ¬ ∃ c : ℝ, 0 < c ∧ ∀ n k : ℕ, 1 ≤ k → k < n →
     ∃ d : ℕ, (d : ℝ) ∈ Set.Ioc (c * n) n ∧ d ∣ n.choose k := by
   sorry
 
@@ -59,7 +59,7 @@ example : ∀ i < 15, ¬ 99215 - i ∣ Nat.choose 99215 15 :=
 
 /-- The following is Schinzel's conjecture, which appears in [Gu04]. -/
 @[category research open, question, AMS 11]
-theorem erdos_387.variants.schinzel : answer(sorry) ↔
+theorem erdos_387.variants.schinzel :
     ∀ᶠ k in atTop, ¬ IsPrimePow k → ∃ n : ℕ, ∀ i < k, ¬ n - i ∣ n.choose k := by
   sorry
 
@@ -85,7 +85,7 @@ This variant appears in [Gu04]. Bui, Naprienko, Pratt, and Zaharescu [BNPZ26] an
 negatively.
 -/
 @[category research solved, question, AMS 11]
-theorem erdos_387.variants.guy : answer(False) ↔ ∀ c : ℝ, c < 1 → ∀ᶠ n : ℕ in atTop, ∀ k : ℕ, 1 ≤ k →
+theorem erdos_387.variants.guy : ¬ ∀ c : ℝ, c < 1 → ∀ᶠ n : ℕ in atTop, ∀ k : ℕ, 1 ≤ k →
     k < n → ∃ d : ℕ, (d : ℝ) ∈ Set.Ioc (c * n) n ∧ d ∣ n.choose k := by
   sorry
 

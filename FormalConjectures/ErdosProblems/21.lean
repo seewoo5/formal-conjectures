@@ -82,7 +82,7 @@ Tripathi [Tr14]. Barát and Wanless [BaWa21] proved that $f(5)=13$, and that $13
 -/
 @[category research solved, question, AMS 5, formal_proof using lean4 at
   "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos21.lean#L13036"]
-theorem erdos_21 : answer(True) ↔ ∃ C : ℕ, ∀ᶠ n : ℕ in atTop, f n ≤ C * n := by
+theorem erdos_21 : ∃ C : ℕ, ∀ᶠ n : ℕ in atTop, f n ≤ C * n := by
   sorry
 
 /-- Erdős and Lovász [ErLo75] proved that $\frac{8}{3}n-3\leq f(n)$ for all $n$. -/
@@ -92,7 +92,7 @@ theorem erdos_21.variants.lower (n : ℕ) : (8 / 3 : ℝ) * n - 3 ≤ f n := by
 
 /-- It has been speculated (see e.g. [Ka94]) that the correct answer is $3n+O(1)$. -/
 @[category research open, question, AMS 5]
-theorem erdos_21.variants.three_n : answer(sorry) ↔ ∃ C : ℕ, ∀ᶠ n : ℕ in atTop,
+theorem erdos_21.variants.three_n : ∃ C : ℕ, ∀ᶠ n : ℕ in atTop,
     f n ≤ 3 * n + C ∧ 3 * n ≤ f n + C := by
   sorry
 

@@ -58,8 +58,8 @@ over any function `d` recording them.
 -/
 @[category research solved, question, AMS 11, formal_proof using lean4 at
   "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos690.lean#L2162"]
-theorem erdos_690 : answer(False) ↔
-    ∀ k ≥ 1, ∀ d : ℕ → ℝ,
+theorem erdos_690 :
+    ¬ ∀ k ≥ 1, ∀ d : ℕ → ℝ,
       (∀ p, p.Prime → (kthPrimeFactorSet k p).HasDensity (d p)) → IsUnimodalOnPrimes d := by
   sorry
 
@@ -89,7 +89,7 @@ theorem erdos_690.variants.cambie_not_unimodal (k : ℕ) (hk : 4 ≤ k) (hk' : k
 
 /-- Is $d_k(p)$ unimodular for any $k\geq 21$? -/
 @[category research open, question, AMS 11]
-theorem erdos_690.variants.large_k : answer(sorry) ↔
+theorem erdos_690.variants.large_k :
     ∃ k ≥ 21, ∀ d : ℕ → ℝ,
       (∀ p, p.Prime → (kthPrimeFactorSet k p).HasDensity (d p)) → IsUnimodalOnPrimes d := by
   sorry

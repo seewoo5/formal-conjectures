@@ -49,7 +49,7 @@ In a (noncommutative) ring which is left and right Noetherian,
 the intersection of the powers of the Jacobson ideal is trivial -/
 @[category research open, question, AMS 16]
 theorem jacobson_conjecture :
-    answer(sorry) ↔ ∀ (R : Type) [Ring R] [IsNoetherianRing R] [IsRightNoetherianRing R],
+    ∀ (R : Type) [Ring R] [IsNoetherianRing R] [IsRightNoetherianRing R],
       JacobsonConjectureFor R := by
   sorry
 
@@ -64,7 +64,7 @@ Noetherian rings. However in [He1965] Herstein constructs a right Noetherian rin
 Jacobson conjecture does not hold. -/
 @[category research solved, question, AMS 16]
 theorem jacobson_conjecture_of_right_noetherian :
-    answer(False) ↔ ∀ (R : Type) [Ring R] [IsRightNoetherianRing R], JacobsonConjectureFor R := by
+    ¬ ∀ (R : Type) [Ring R] [IsRightNoetherianRing R], JacobsonConjectureFor R := by
   sorry
 
 /- In [Le1977] Lenagan shows the Jacobson conjecture holds for left and right Noetherian rings

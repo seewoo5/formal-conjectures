@@ -58,7 +58,7 @@ def Erdos939Sums (r : ℕ) :=
 If $r≥4$ then can the sum of $r-2$ coprime $r$-powerful numbers ever be itself $r$-powerful?
 -/
 @[category research open, question, AMS 11]
-theorem erdos_939 : answer(sorry) ↔ ∀ r ≥ 4, (Erdos939Sums r).Nonempty := by
+theorem erdos_939 : ∀ r ≥ 4, (Erdos939Sums r).Nonempty := by
   sorry
 
 /--
@@ -74,7 +74,7 @@ $r = 4$ and $r = 5$. The category is unchanged because the construction is recor
 comments and not in the literature.
 -/
 @[category research solved, question, AMS 11]
-theorem erdos_939.variants.finite : answer(False) ↔ ∀ r ≥ 4, (Erdos939Sums r).Finite := by
+theorem erdos_939.variants.finite : ¬ ∀ r ≥ 4, (Erdos939Sums r).Finite := by
   sorry
 
 /--
@@ -102,7 +102,7 @@ further construction.
 -/
 @[category research solved, question, AMS 11]
 theorem erdos_939.variants.triples :
-    answer(True) ↔ {(a,b,c) | ({a, b, c} : Finset ℕ).Coprime ∧
+    {(a,b,c) | ({a, b, c} : Finset ℕ).Coprime ∧
       0 < a ∧ 0 < b ∧
       (3).Full a ∧ (3).Full b ∧ (3).Full c ∧
       a + b = c}.Infinite := by

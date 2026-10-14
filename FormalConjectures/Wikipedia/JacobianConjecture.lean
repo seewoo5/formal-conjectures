@@ -104,8 +104,7 @@ This is false: `F` has Jacobian determinant `1` but identifies
 two distinct points, so it admits no inverse. This counterexample works in all characteristics. -/
 @[category research solved, question, AMS 14]
 theorem jacobian_conjecture {k : Type} [CommRing k] [Nontrivial k] :
-    answer(False) ↔ ∀ {σ : Type} [Fintype σ] [DecidableEq σ], JacobianConjectureProp k σ := by
-  rw [false_iff]
+    ¬ ∀ {σ : Type} [Fintype σ] [DecidableEq σ], JacobianConjectureProp k σ := by
   intro h
   obtain ⟨H, -, hGH⟩ := h (G k) (det_jacobian_G k ▸ isUnit_one)
   have hleft : Function.LeftInverse (H.aeval (S₁ := k)) ((G k).aeval) := fun a => by
@@ -118,7 +117,7 @@ theorem jacobian_conjecture {k : Type} [CommRing k] [Nontrivial k] :
 /-- Does the Jacobian conjecture hold in the two variable case? -/
 @[category research open, question, AMS 14]
 theorem jacobian_conjecture_two_variables :
-    answer(sorry) ↔ ∀ {k : Type} [Field k] [CharZero k], JacobianConjectureProp k (Fin 2) := by
+    ∀ {k : Type} [Field k] [CharZero k], JacobianConjectureProp k (Fin 2) := by
   sorry
 
 end Conjecture

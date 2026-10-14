@@ -64,7 +64,7 @@ This is the literal interpretation of "positive density" which was falsified.
 @[category research solved, question, AMS 11,
 formal_proof using formal_conjectures at "https://github.com/google-deepmind/formal-conjectures/blob/300bf771bdbef43d7b9aa2521e633a50fd54dd28/FormalConjectures/ErdosProblems/125.lean"]
 theorem erdos_125 :
-    answer(False) ↔ (A + B).HasPosDensity := by
+    ¬ (A + B).HasPosDensity := by
   sorry
 
 /--
@@ -76,7 +76,7 @@ This has been falsified.
 @[category research solved, question, AMS 11,
 formal_proof using formal_conjectures at "https://github.com/mo271/formal-conjectures/blob/c27415379b5dbe34105d1fdd707994540c4c6fc7/FormalConjectures/ErdosProblems/125.lean#L468"]
 theorem erdos_125.variants.positive_lower_density :
-    answer(False) ↔ 0 < (A + B).lowerDensity := by
+    ¬ 0 < (A + B).lowerDensity := by
   sorry
 
 
@@ -86,7 +86,7 @@ Does $A + B$ have positive upper density?
 -/
 @[category research open, question, AMS 11]
 theorem erdos_125.variants.positive_upper_density :
-    answer(sorry) ↔ 0 < (A + B).upperDensity := by
+    0 < (A + B).upperDensity := by
   sorry
 
 /--
@@ -95,7 +95,7 @@ Does $A + B$ have zero upper and lower density?
 -/
 @[category research open, question, AMS 11]
 theorem erdos_125.variants.zero_density :
-    answer(sorry) ↔ (A + B).upperDensity = 0 ∧ (A + B).lowerDensity = 0 := by
+    (A + B).upperDensity = 0 ∧ (A + B).lowerDensity = 0 := by
   sorry
 
 /--
@@ -104,7 +104,7 @@ Does $A + B$ have zero lower density, but positive upper density?
 -/
 @[category research open, question, AMS 11]
 theorem erdos_125.variants.zero_lower_positive_upper_density :
-    answer(sorry) ↔ (A + B).lowerDensity = 0 ∧ 0 < (A + B).upperDensity := by
+    (A + B).lowerDensity = 0 ∧ 0 < (A + B).upperDensity := by
   sorry
 
 /--
@@ -116,7 +116,7 @@ This follows from the disproof `erdos_125.variants.positive_lower_density` above
 @[category research solved, question, AMS 11, formal_proof using formal_conjectures at
 "https://github.com/mo271/formal-conjectures/blob/0bc740d2351c53713e66d9340e83f7d2c1ddecab/FormalConjectures/ErdosProblems/125.lean#L860"]
 theorem erdos_125.variants.positive_unequal_density :
-    answer(False) ↔ 0 < (A + B).lowerDensity ∧ (A + B).lowerDensity < (A + B).upperDensity := by
+    ¬ (0 < (A + B).lowerDensity ∧ (A + B).lowerDensity < (A + B).upperDensity) := by
   sorry
 
 end Erdos125

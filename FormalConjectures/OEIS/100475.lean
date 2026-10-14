@@ -111,15 +111,10 @@ the one-based prime recurrence at index zero.
 -/
 @[category research solved, question, AMS 11]
 theorem conjecture_with_zero :
-    answer(True) ↔ ∃ x : ℕ, x ≠ 1 ∧ IsUltimatelyPeriodic (aStartAt x) := by
-  change True ↔ _
-  constructor
-  · intro _
-    refine ⟨0, by omega, 0, 1, by omega, ?_⟩
-    intro n _
-    rw [aStartAt_zero, aStartAt_zero]
-  · intro _
-    trivial
+    ∃ x : ℕ, x ≠ 1 ∧ IsUltimatelyPeriodic (aStartAt x) := by
+  refine ⟨0, by omega, 0, 1, by omega, ?_⟩
+  intro n _
+  rw [aStartAt_zero, aStartAt_zero]
 
 /--
 Starting at a positive value other than $a(0) = 1$, does this sequence ever go into a loop?
@@ -129,7 +124,7 @@ The positivity hypothesis is required because the source recurrence uses the one
 -/
 @[category research open, question, AMS 11]
 theorem conjecture :
-    answer(sorry) ↔ ∃ x : ℕ, 0 < x ∧ x ≠ 1 ∧ IsUltimatelyPeriodic (aStartAt x) := by
+    ∃ x : ℕ, 0 < x ∧ x ≠ 1 ∧ IsUltimatelyPeriodic (aStartAt x) := by
   sorry
 
 end OeisA100475

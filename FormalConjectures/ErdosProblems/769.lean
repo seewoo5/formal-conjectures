@@ -81,7 +81,7 @@ The `c(n) \gg n^n` conjecture is **false**: for odd `n`, one can tile the unit
 Determining good bounds for `c(n)` in general remains open.
 -/
 @[category research solved, question, AMS 52, formal_proof using lean4 at "https://github.com/williamjblair/lean-proofs/blob/4f915a323443bfb1709a6805a013812016dca88a/starfleet/erdos-769/Research/Solution.lean"]
-theorem erdos_769 : answer(False) ↔ Erdos769LowerBound := by
+theorem erdos_769 : ¬ Erdos769LowerBound := by
   sorry
 
 /--
@@ -94,9 +94,8 @@ exact coverage permits only one tile, so no cutoff exists.
 -/
 @[category research open, question, AMS 52]
 theorem erdos_769.variants.growth_rate :
-    answer(sorry) ↔
-      ∃ c : ℕ → ℕ, (∀ n, 0 < n → IsCutoff n (c n)) ∧
-        ∃ γ : ℝ, Tendsto (fun n : ℕ => Real.log (c n) / (n * Real.log n)) atTop (𝓝 γ) := by
+    ∃ c : ℕ → ℕ, (∀ n, 0 < n → IsCutoff n (c n)) ∧
+      ∃ γ : ℝ, Tendsto (fun n : ℕ => Real.log (c n) / (n * Real.log n)) atTop (𝓝 γ) := by
   sorry
 
 end Erdos769

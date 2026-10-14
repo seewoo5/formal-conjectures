@@ -131,7 +131,7 @@ It is not known whether or not there exists a Sidon subset of $\mathbb{Z}/p\math
 $(1 + o(1))\sqrt{p}$, for all $p$ [Gr24].
 -/
 @[category research open, question, AMS 5 11]
-theorem green_31.variants.zmod_p : answer(sorry) ↔
+theorem green_31.variants.zmod_p :
     ∃ S : (n : ℕ) → Finset (ZMod n),
     ∃ o : ℕ → ℝ,
       (o =o[atTop] fun _ : ℕ ↦ (1 : ℝ)) ∧
@@ -201,7 +201,7 @@ of exponent $2$ then has at most one element. We use the definition of Babai and
 instead, see `IsGroupSidon`.
 -/
 @[category research open, question, AMS 5 11]
-theorem green_31.variants.abelian : answer(sorry) ↔
+theorem green_31.variants.abelian :
     ∀ (G : Type) [AddCommGroup G] [Fintype G],
       ∃ S : Finset G, IsGroupSidon (S : Set G) ∧
         0.01 * Real.sqrt (Fintype.card G) ≤ S.card := by
@@ -221,7 +221,7 @@ Another very nice old problem is whether there is a Sidon subset of $\{0, 1\}^n$
 where $N = 2^n$ [Gr24].
 -/
 @[category research open, question, AMS 5 11]
-theorem green_31.variants.sidon_01n : answer(sorry) ↔
+theorem green_31.variants.sidon_01n :
     ∃ S : (n : ℕ) → Finset (𝔽₂ n),
       (∀ n, IsBinarySidon (S n : Set (𝔽₂ n))) ∧
       ∀ᶠ n in atTop, ((2 : ℝ) ^ n) ^ (0.51 : ℝ) ≤ (S n).card := by

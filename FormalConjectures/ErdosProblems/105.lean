@@ -45,8 +45,8 @@ This has been disproved by Xichuan in the comments, who has found three explicit
 counterexamples.
 -/
 @[category research solved, question, AMS 5 52, formal_proof using lean4 at "https://github.com/plby/lean-proofs/blob/main/src/v4.29.1/ErdosProblems/Erdos105.lean"]
-theorem erdos_105 : answer(False) ↔
-    ∀ A B : Finset ℝ², Disjoint A B → A.card = B.card + 3 →
+theorem erdos_105 :
+    ¬ ∀ A B : Finset ℝ², Disjoint A B → A.card = B.card + 3 →
       ¬ Collinear ℝ (A : Set ℝ²) →
       ∃ p ∈ A, ∃ q ∈ A, p ≠ q ∧ ∀ b ∈ B, b ∉ line[ℝ, p, q] := by
   sorry
@@ -75,7 +75,7 @@ theorem erdos_105.variants.beck_szemeredi_trotter : ∃ c > (0 : ℝ),
 It remains possible that this holds with $n-4$ (or in general with $n-O(1)$ or $(1-o(1))n$).
 -/
 @[category research open, question, AMS 5 52]
-theorem erdos_105.variants.sub_four : answer(sorry) ↔
+theorem erdos_105.variants.sub_four :
     ∀ A B : Finset ℝ², Disjoint A B → A.card = B.card + 4 →
       ¬ Collinear ℝ (A : Set ℝ²) →
       ∃ p ∈ A, ∃ q ∈ A, p ≠ q ∧ ∀ b ∈ B, b ∉ line[ℝ, p, q] := by

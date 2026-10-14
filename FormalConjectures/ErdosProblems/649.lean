@@ -46,8 +46,8 @@ The statement below assumes $p \neq q$: for $p = q$ no such $n$ exists, because 
 both $n$ and $n+1$.
 -/
 @[category research solved, question, AMS 11, formal_proof using lean4 at "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos649.lean#L488"]
-theorem erdos_649 : answer(False) ↔
-    ∀ p q : ℕ, p.Prime → q.Prime → p ≠ q →
+theorem erdos_649 :
+    ¬ ∀ p q : ℕ, p.Prime → q.Prime → p ≠ q →
       ∃ n : ℕ, n.maxPrimeFac = p ∧ (n + 1).maxPrimeFac = q := by
   sorry
 
@@ -98,7 +98,7 @@ Tong asks whether, for any given odd prime $q$, there are infinitely many primes
 there is no integer $n$ with $P(n)=p$ and $P(n+1)=q$.
 -/
 @[category research open, question, AMS 11]
-theorem erdos_649.variants.tong_question : answer(sorry) ↔
+theorem erdos_649.variants.tong_question :
     ∀ q : ℕ, q.Prime → Odd q →
       {p : ℕ |
         p.Prime ∧ ¬ ∃ n : ℕ, n.maxPrimeFac = p ∧ (n + 1).maxPrimeFac = q}.Infinite := by
